@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TenderOpportunity } from '../types/procurement';
+import { TenderOpportunity, CompanyProfile } from '../types/procurement';
 import {
   ArrowLeft,
   ArrowRight,
@@ -17,16 +17,18 @@ import {
   FileText
 } from 'lucide-react';
 
-interface Step3AnalysisProps {
+export interface Step3AnalysisProps {
   tender: TenderOpportunity;
-  onBack: () => void;
-  onNext: () => void;
+  company?: CompanyProfile;
+  onBack?: () => void;
+  onNext?: () => void;
 }
 
 export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
   tender,
-  onBack,
-  onNext
+  company,
+  onBack = () => {},
+  onNext = () => {}
 }) => {
   const [activeTab, setActiveTab] = useState<'requirements' | 'bidDecision'>('requirements');
   const [isSimulatingAnalysis, setIsSimulatingAnalysis] = useState(false);
@@ -361,3 +363,5 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
     </div>
   );
 };
+
+export default Step3Analysis;

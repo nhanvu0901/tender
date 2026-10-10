@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TenderOpportunity } from '../types/procurement';
+import { TenderOpportunity, CompanyProfile } from '../types/procurement';
 import {
   ArrowLeft,
   Copy,
@@ -15,18 +15,22 @@ import {
   BookmarkCheck
 } from 'lucide-react';
 
-interface Step5ProposalProps {
+export interface Step5ProposalProps {
   tender: TenderOpportunity;
-  onBack: () => void;
-  onRestartJourney: () => void;
-  onOpenSources: () => void;
+  company?: CompanyProfile;
+  onBack?: () => void;
+  onNext?: () => void;
+  onRestartJourney?: () => void;
+  onOpenSources?: () => void;
 }
 
 export const Step5Proposal: React.FC<Step5ProposalProps> = ({
   tender,
-  onBack,
-  onRestartJourney,
-  onOpenSources
+  company,
+  onBack = () => {},
+  onNext = () => {},
+  onRestartJourney = () => {},
+  onOpenSources = () => {}
 }) => {
   const [activeSection, setActiveSection] = useState<'all' | 'exec' | 'scope' | 'method' | 'past' | 'team' | 'impact'>('all');
   const [isCopied, setIsCopied] = useState(false);
@@ -466,3 +470,5 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
     </div>
   );
 };
+
+export default Step5Proposal;

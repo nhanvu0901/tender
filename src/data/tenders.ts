@@ -713,3 +713,6 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     }
   }
 ];
+
+export const TENDERS = DUMMY_TENDERS;
+export const FEATURED_TENDER_ID = 'tender-1';

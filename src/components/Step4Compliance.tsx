@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { TenderOpportunity, ComplianceItem } from '../types/procurement';
+import { TenderOpportunity, ComplianceItem, CompanyProfile } from '../types/procurement';
 import {
   ArrowLeft,
   ArrowRight,
@@ -12,16 +12,18 @@ import {
   Sparkles
 } from 'lucide-react';
 
-interface Step4ComplianceProps {
+export interface Step4ComplianceProps {
   tender: TenderOpportunity;
-  onBack: () => void;
-  onNext: () => void;
+  company?: CompanyProfile;
+  onBack?: () => void;
+  onNext?: () => void;
 }
 
 export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
   tender,
-  onBack,
-  onNext
+  company,
+  onBack = () => {},
+  onNext = () => {}
 }) => {
   const [statusFilter, setStatusFilter] = useState<'All' | 'Met' | 'Partial' | 'Gap'>('All');
 
@@ -224,3 +226,5 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
     </div>
   );
 };
+
+export default Step4Compliance;
