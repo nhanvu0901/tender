@@ -1,5 +1,7 @@
 import { TenderOpportunity } from '../types/procurement';
 
+export const DEMO_TODAY = '2026-10-10';
+
 export const DUMMY_TENDERS: TenderOpportunity[] = [
   {
     id: 'tender-1',
@@ -11,7 +13,7 @@ export const DUMMY_TENDERS: TenderOpportunity[] = [
     sourcePortalUrl: 'https://halifax.bidsandtenders.ca/Module/Tenders/en',
     portalReferenceName: 'HRM bids&tenders™ Portal (Ref #2026-0842-SEAWALL)',
     closingDate: 'November 14, 2026 — 2:00 PM AST',
-    daysRemaining: 24,
+    daysRemaining: 35,
     estimatedValue: '$650,000 – $800,000 CAD',
     region: 'Halifax Regional Municipality (HRM)',
     relevanceScore: 96,
@@ -41,6 +43,7 @@ export const DUMMY_TENDERS: TenderOpportunity[] = [
         'Local HRM Social Value bonus points achievable through local labour and apprenticeship commitments.'
       ],
       risksAndMitigation: [
+        'Risk / Identified Gap: Mandatory DFO Marine Mammal Observer (MMO) protocol requires specialist credential not currently in-house. Mitigation: Formalized subcontract partner agreement with Dartmouth-based certified marine environmental consultant.',
         'Risk: Weather/tidal surge delays during late autumn Halifax Harbour storms. Mitigation: Propose dual-shift tidal window scheduling utilizing our mobile Dartmouth marine barge.',
         'Risk: Strict public trail disruption limitations along Point Pleasant Park / Arm. Mitigation: Include low-impact barge-side acoustic surveying and quiet hydro-demolition in technical plan.'
       ]
@@ -73,6 +76,13 @@ export const DUMMY_TENDERS: TenderOpportunity[] = [
         type: 'Mandatory',
         title: 'Minimum Insurance & Indemnification Limits',
         description: 'Evidence of $10,000,000 CAD Commercial General Liability, $5,000,000 CAD Professional Errors & Omissions, and $5,000,000 CAD Marine Environmental Pollution coverage.'
+      },
+      {
+        id: 'req-9',
+        code: 'M5',
+        type: 'Mandatory',
+        title: 'DFO Certified Marine Mammal Observer (MMO) Protocol',
+        description: 'All in-water hydro-acoustic multibeam profiling and core drilling must be monitored by a DFO-certified Marine Mammal Observer to enforce acoustic safety shut-down zones in Halifax Harbour.'
       },
       {
         id: 'req-5',
@@ -179,6 +189,15 @@ export const DUMMY_TENDERS: TenderOpportunity[] = [
         companyEvidence: '100% Nova Scotia workforce; living wage certified employer; active mentor in NSCC Dartmouth Marine Geomatics co-op program.',
         status: 'Partial',
         actionNeeded: 'Formalize 1-page Social Value Commitment declaring 1 paid NSCC geomatics co-op student placement during the field phase.'
+      },
+      {
+        id: 'cm-9',
+        requirementCode: 'M5',
+        requirementTitle: 'DFO Certified Marine Mammal Observer (MMO)',
+        requirementType: 'Mandatory',
+        companyEvidence: 'ACCM marine personnel maintain general environmental awareness; however, no in-house staff holds formal DFO Marine Mammal Observer (MMO) certification.',
+        status: 'Gap',
+        actionNeeded: 'Execute subcontract agreement with Dartmouth-based certified MMO environmental partner (e.g., East Coast Environmental / Dalhousie) and append agreement letter to Envelope A.'
       }
     ],
     proposalDraft: {
@@ -223,7 +242,7 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     sourcePortalUrl: 'https://procurement-portal.novascotia.ca/tenders',
     portalReferenceName: 'NS Tenders Portal (Notice #DPW-2026-T-0419)',
     closingDate: 'November 20, 2026 — 2:00 PM AST',
-    daysRemaining: 30,
+    daysRemaining: 41,
     estimatedValue: '$340,000 – $410,000 CAD',
     region: 'Cape Breton (CBRM, Richmond, Inverness)',
     relevanceScore: 88,
@@ -285,7 +304,7 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     sourcePortalUrl: 'https://canadabuys.canada.ca/en',
     portalReferenceName: 'CanadaBuys Federal Notice (Solicitation #F5211-26-7712)',
     closingDate: 'November 27, 2026 — 2:00 PM EST',
-    daysRemaining: 37,
+    daysRemaining: 48,
     estimatedValue: '$210,000 – $280,000 CAD',
     region: 'Halifax Regional Municipality (HRM)',
     relevanceScore: 82,
@@ -342,10 +361,10 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     buyer: 'Nova Scotia Health Authority (NSHA) — Capital Infrastructure Branch',
     buyerCategory: 'MASH / Health',
     source: 'SAP Ariba / NS Health',
-    sourcePortalUrl: 'https://procurement-portal.novascotia.ca/tenders',
-    portalReferenceName: 'NS Health Tender (Ariba Event #WS-449102-NSH)',
+    sourcePortalUrl: 'https://www.nshealth.ca/about-nova-scotia-health/doing-business-nsh',
+    portalReferenceName: 'NS Health Doing Business Portal (Ref #WS-449102-NSH)',
     closingDate: 'December 4, 2026 — 2:00 PM AST',
-    daysRemaining: 44,
+    daysRemaining: 55,
     estimatedValue: '$1,100,000 – $1,350,000 CAD',
     region: 'Halifax Regional Municipality (HRM)',
     relevanceScore: 74,
@@ -404,7 +423,7 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     sourcePortalUrl: 'https://procurement-portal.novascotia.ca/tenders',
     portalReferenceName: 'NS Tenders Portal (Build NS #BNS-2026-0551)',
     closingDate: 'November 18, 2026 — 2:00 PM AST',
-    daysRemaining: 28,
+    daysRemaining: 39,
     estimatedValue: '$195,000 – $240,000 CAD',
     region: 'South Shore (Lunenburg, Shelburne, Queens)',
     relevanceScore: 79,
@@ -458,7 +477,7 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     sourcePortalUrl: 'https://halifax.bidsandtenders.ca/Module/Tenders/en',
     portalReferenceName: 'HRM bids&tenders™ Portal (Ref #2026-1104-SACKVILLE)',
     closingDate: 'November 12, 2026 — 2:00 PM AST',
-    daysRemaining: 22,
+    daysRemaining: 33,
     estimatedValue: '$520,000 – $610,000 CAD',
     region: 'Halifax Regional Municipality (HRM)',
     relevanceScore: 85,
@@ -512,7 +531,7 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     sourcePortalUrl: 'https://procurement-portal.novascotia.ca/tenders',
     portalReferenceName: 'NS Tenders Portal (CCRCE-2026-0310)',
     closingDate: 'December 1, 2026 — 2:00 PM AST',
-    daysRemaining: 41,
+    daysRemaining: 52,
     estimatedValue: '$145,000 – $190,000 CAD',
     region: 'Northern NS (Pictou, Colchester, Antigonish)',
     relevanceScore: 68,
@@ -564,7 +583,7 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     sourcePortalUrl: 'https://canadabuys.canada.ca/en',
     portalReferenceName: 'CanadaBuys Tender (Notice #TC-DIGBY-2026-4421)',
     closingDate: 'December 10, 2026 — 2:00 PM EST',
-    daysRemaining: 50,
+    daysRemaining: 61,
     estimatedValue: '$480,000 – $580,000 CAD',
     region: 'Annapolis Valley (Kings, Annapolis, Digby)',
     relevanceScore: 72,
@@ -618,7 +637,7 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     sourcePortalUrl: 'https://procurement-portal.novascotia.ca/tenders',
     portalReferenceName: 'NS Tenders Portal (DPW-2026-T-0988)',
     closingDate: 'November 10, 2026 — 2:00 PM AST',
-    daysRemaining: 20,
+    daysRemaining: 31,
     estimatedValue: '$3,400,000 – $4,200,000 CAD',
     region: 'Northern NS (Pictou, Colchester, Antigonish)',
     relevanceScore: 38,
@@ -670,7 +689,7 @@ ACCM’s understanding encompasses both the subsurface marine geotechnical reali
     sourcePortalUrl: 'https://halifax.bidsandtenders.ca/Module/Tenders/en',
     portalReferenceName: 'HRM bids&tenders™ Portal (Ref #2026-0022-FLEET)',
     closingDate: 'November 16, 2026 — 2:00 PM AST',
-    daysRemaining: 26,
+    daysRemaining: 37,
     estimatedValue: '$2,100,000 – $2,700,000 CAD',
     region: 'Halifax Regional Municipality (HRM)',
     relevanceScore: 24,
