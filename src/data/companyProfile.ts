@@ -8,12 +8,12 @@ export const INITIAL_COMPANY_PROFILE: CompanyProfile = {
   nsRegistryNumber: 'NS-8849201 (Registry of Joint Stocks — Good Standing)',
   teamSize: 28,
   coreCapabilities: [
-    'Marine Geotechnical & Bathymetric Sonar Surveys',
-    'Tidal Seawall, Bulkhead & Wave Attenuator Rehabilitation',
-    'Underwater Non-Destructive Structural Concrete & Steel Testing',
-    'Wharf Berthing Dolphin Restoration & Fender Installation',
-    'Coastal Storm Surge Erosion Mitigation & Climate Resilience',
-    'Cathodic Protection & Subsea Pile Jacketing'
+    'Marine Sonar & Geotechnical Surveys',
+    'Tidal Seawall & Bulkhead Repairs',
+    'Underwater NDT Concrete & Steel Testing',
+    'Wharf Dolphin & Fender Installation',
+    'Coastal Erosion & Storm Surge Defense',
+    'Cathodic Protection & Subsea Jacketing'
   ],
   naicsCodes: [
     { code: '237990', label: 'Other Heavy and Civil Engineering Construction (Marine Infrastructure)' },
@@ -30,7 +30,7 @@ export const INITIAL_COMPANY_PROFILE: CompanyProfile = {
       name: 'COR™ Safety Certification',
       issuer: 'Nova Scotia Construction Safety Association (NSCSA)',
       status: 'Certified',
-      expiryOrRenewal: 'Valid through Nov 2027 (Annual Audit Compliant)'
+      expiryOrRenewal: 'Valid through Nov 2027'
     },
     {
       name: 'ISO 9001:2015 Quality Management',
@@ -42,13 +42,13 @@ export const INITIAL_COMPANY_PROFILE: CompanyProfile = {
       name: 'Certificate of Authorization (COA)',
       issuer: 'Engineers Nova Scotia (APENS #2019-0412)',
       status: 'Good Standing',
-      expiryOrRenewal: 'Annual Active Practicing License'
+      expiryOrRenewal: 'Annual Active License'
     },
     {
       name: 'Designated Organization Screening (DOS)',
       issuer: 'Public Services and Procurement Canada (PSPC / CISD)',
       status: 'Active',
-      expiryOrRenewal: 'Reliability Status for key personnel'
+      expiryOrRenewal: 'Reliability Status'
     },
     {
       name: 'Nova Scotia Business Registry (RJS)',
@@ -68,37 +68,37 @@ export const INITIAL_COMPANY_PROFILE: CompanyProfile = {
     {
       id: 'past-1',
       client: 'Halifax Regional Municipality (HRM) — Transit & Infrastructure',
-      projectName: 'Dartmouth Ferry Terminal Berthing Dolphin Structural Assessment & Concrete Remediation',
+      projectName: 'Dartmouth Ferry Dolphin Assessment & Remediation',
       contractValue: '$420,000 CAD',
       completionDate: 'October 2024',
-      scopeSummary: 'Underwater ultrasonic thickness gauge inspection of marine steel pilings, crack injection repair, and installation of sacrificial zinc anode cathodic arrays.',
+      scopeSummary: 'Ultrasonic piling inspection, crack repair, and zinc cathodic anode array install.',
       relevanceRating: 'Direct'
     },
     {
       id: 'past-2',
       client: 'Build Nova Scotia (Waterfront Development)',
-      projectName: 'Lunenburg Historic Foundry Wharf Wave Attenuator & Seawall Upgrade',
+      projectName: 'Lunenburg Historic Wharf Wave Attenuator & Seawall',
       contractValue: '$890,000 CAD',
       completionDate: 'June 2024',
-      scopeSummary: 'Engineered armour stone placement, tidal rip-rap stabilization, timber cribbing reinforcement, and multi-beam bathymetric monitoring in high-surge tidal zones.',
+      scopeSummary: 'Armour stone placement, rip-rap stabilization, and multibeam sonar monitoring.',
       relevanceRating: 'Direct'
     },
     {
       id: 'past-3',
       client: 'Nova Scotia Department of Public Works (DPW)',
-      projectName: 'Sheet Harbour Small Craft Mooring Facility Geotechnical & Marine Survey',
+      projectName: 'Sheet Harbour Mooring Geotechnical & Marine Survey',
       contractValue: '$185,000 CAD',
       completionDate: 'November 2023',
-      scopeSummary: 'Sub-bottom acoustic profiling, diver-assisted coring, and marine hazard reporting to support provincial small craft harbour expansion.',
+      scopeSummary: 'Sub-bottom acoustic profiling, diver coring, and marine hazard reporting for DPW.',
       relevanceRating: 'High'
     },
     {
       id: 'past-4',
       client: 'Fisheries and Oceans Canada (DFO / Small Craft Harbours)',
-      projectName: 'Eastern Passage Fisherman’s Cove Breakwater Structural Integrity Audit',
+      projectName: 'Eastern Passage Breakwater Integrity Audit',
       contractValue: '$260,000 CAD',
       completionDate: 'March 2023',
-      scopeSummary: 'Comprehensive 3D laser scan and diver inspection of concrete capping and submarine toe-wall erosion post-Hurricane Fiona.',
+      scopeSummary: '3D laser scan and diver inspection of concrete capping and toe-wall erosion.',
       relevanceRating: 'High'
     }
   ],
