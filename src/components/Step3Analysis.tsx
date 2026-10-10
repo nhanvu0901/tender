@@ -59,7 +59,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
           className="text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to opportunities</span>
+          <span>Back</span>
         </button>
 
         <div className="flex items-center gap-2">
@@ -69,14 +69,14 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
             className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium flex items-center gap-1.5 transition cursor-pointer disabled:opacity-60"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-sky-600 ${isSimulatingAnalysis ? 'animate-spin' : ''}`} />
-            <span>{isSimulatingAnalysis ? 'Analyzing…' : 'Re-analyze tender'}</span>
+            <span>{isSimulatingAnalysis ? 'Analyzing…' : 'Re-analyze'}</span>
           </button>
 
           <button
             onClick={onNext}
             className="px-4 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
           >
-            <span>Proceed to compliance</span>
+            <span>Check compliance</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -103,7 +103,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
             rel="noopener noreferrer"
             className="text-xs text-sky-600 hover:text-sky-800 flex items-center gap-1 font-medium hover:underline"
           >
-            <span>Original tender notice</span>
+            <span>Notice</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -113,7 +113,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
             {tender.title}
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Review key dates, mandatory clauses, and whether this tender is worth bidding on.
+            Review key dates and pass/fail rules.
           </p>
           <p className="text-sm text-slate-700 font-medium mt-1">
             Buyer: {tender.buyer}
@@ -124,28 +124,28 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-sm">
           <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
             <span className="text-slate-500 block text-xs flex items-center gap-1 mb-0.5">
-              <DollarSign className="w-3.5 h-3.5 text-emerald-600" /> Estimated value
+              <DollarSign className="w-3.5 h-3.5 text-emerald-600" /> Value
             </span>
             <span className="font-semibold text-slate-900 block">{tender.estimatedValue}</span>
           </div>
 
           <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
             <span className="text-slate-500 block text-xs flex items-center gap-1 mb-0.5">
-              <MapPin className="w-3.5 h-3.5 text-sky-600" /> Region &amp; site
+              <MapPin className="w-3.5 h-3.5 text-sky-600" /> Region
             </span>
             <span className="font-medium text-slate-900 block truncate">{tender.region}</span>
           </div>
 
           <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
             <span className="text-slate-500 block text-xs flex items-center gap-1 mb-0.5">
-              <Clock className="w-3.5 h-3.5 text-amber-600" /> Closing deadline
+              <Clock className="w-3.5 h-3.5 text-amber-600" /> Closes
             </span>
             <span className="font-semibold text-slate-900 block">{tender.closingDate}</span>
           </div>
 
           <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
             <span className="text-slate-500 block text-xs flex items-center gap-1 mb-0.5">
-              <Scale className="w-3.5 h-3.5 text-indigo-600" /> Procurement method
+              <Scale className="w-3.5 h-3.5 text-indigo-600" /> Method
             </span>
             <span className="font-medium text-slate-900 block truncate">{tender.procurementMethod}</span>
           </div>
@@ -153,7 +153,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
 
         {/* Summary */}
         <div className="pt-2 text-sm text-slate-700 leading-relaxed border-t border-slate-100">
-          <p><strong className="font-semibold text-slate-900">Scope summary:</strong> {tender.summary}</p>
+          <p><strong className="font-semibold text-slate-900">Scope:</strong> {tender.summary}</p>
         </div>
       </div>
 
@@ -174,19 +174,19 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
           <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
-            <span className="text-slate-500 block text-xs mb-0.5">Notice posted</span>
+            <span className="text-slate-500 block text-xs mb-0.5">Posted</span>
             <span className="font-medium text-slate-800">{tender.keyDates.postedDate}</span>
           </div>
           <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200">
-            <span className="text-amber-800 block text-xs font-medium mb-0.5">Question deadline</span>
+            <span className="text-amber-800 block text-xs font-medium mb-0.5">Questions</span>
             <span className="font-semibold text-amber-950">{tender.keyDates.questionDeadline}</span>
           </div>
           <div className="p-3 rounded-xl bg-rose-50/70 border border-rose-200">
-            <span className="text-rose-800 block text-xs font-medium mb-0.5">Tender closing</span>
+            <span className="text-rose-800 block text-xs font-medium mb-0.5">Closes</span>
             <span className="font-semibold text-rose-950">{tender.keyDates.closingDate}</span>
           </div>
           <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200">
-            <span className="text-emerald-800 block text-xs font-medium mb-0.5">Anticipated award</span>
+            <span className="text-emerald-800 block text-xs font-medium mb-0.5">Award</span>
             <span className="font-semibold text-emerald-950">{tender.keyDates.anticipatedAward}</span>
           </div>
         </div>
@@ -203,7 +203,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
           }`}
         >
           <FileText className="w-4 h-4" />
-          <span>Requirements ({mandatoryReqs.length} mandatory &bull; {ratedReqs.length} rated)</span>
+          <span>Requirements ({mandatoryReqs.length + ratedReqs.length})</span>
         </button>
 
         <button
@@ -227,7 +227,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-rose-950 font-semibold text-base">
                 <ShieldCheck className="w-4 h-4 text-rose-600" />
-                <span>Mandatory criteria</span>
+                <span>Mandatory</span>
               </div>
               <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200">
                 Pass / fail
@@ -247,7 +247,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
                     <span className="text-xs font-medium text-slate-500">Pass / fail</span>
                   </div>
                   <h4 className="font-semibold text-slate-900 text-sm">{req.title}</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">{req.description}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">{req.description}</p>
                 </div>
               ))}
             </div>
@@ -258,7 +258,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 text-sky-950 font-semibold text-base">
                 <Scale className="w-4 h-4 text-sky-600" />
-                <span>Rated criteria</span>
+                <span>Rated</span>
               </div>
               <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 border border-sky-200">
                 Scored
@@ -282,7 +282,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
                     )}
                   </div>
                   <h4 className="font-semibold text-slate-900 text-sm">{req.title}</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">{req.description}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">{req.description}</p>
                 </div>
               ))}
             </div>
@@ -302,7 +302,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
               <div className="flex items-center gap-3">
                 <h3 className="text-2xl font-bold">{tender.bidRationale.verdict}</h3>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 text-xs font-medium">
-                  {tender.bidRationale.winProbability}% estimated win probability
+                  {tender.bidRationale.winProbability}% win chance
                 </span>
               </div>
               <p className="text-sm text-slate-300 max-w-xl">{tender.bidRationale.strategicValue}</p>
@@ -310,7 +310,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
 
             <div className="text-right shrink-0">
               <span className="text-3xl font-bold text-sky-400">{tender.relevanceScore}</span>
-              <span className="block text-xs text-slate-400">Match score</span>
+              <span className="block text-xs text-slate-400">Score</span>
             </div>
           </div>
 
@@ -325,7 +325,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
                 {tender.bidRationale.strengths.map((str, i) => (
                   <div key={i} className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 flex items-start gap-2">
                     <span className="text-emerald-600 font-bold mt-0.5">&check;</span>
-                    <span className="leading-snug">{str}</span>
+                    <span className="leading-snug line-clamp-2">{str}</span>
                   </div>
                 ))}
               </div>
@@ -341,7 +341,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
                 {tender.bidRationale.risksAndMitigation.map((risk, i) => (
                   <div key={i} className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 flex items-start gap-2">
                     <span className="text-amber-600 font-bold mt-0.5">&bull;</span>
-                    <span className="leading-snug">{risk}</span>
+                    <span className="leading-snug line-clamp-2">{risk}</span>
                   </div>
                 ))}
               </div>
@@ -353,9 +353,9 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
       {/* Bottom Action Footer */}
       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <h4 className="font-semibold text-slate-900 text-sm">Next step: check compliance</h4>
+          <h4 className="font-semibold text-slate-900 text-sm">Next step</h4>
           <p className="text-sm text-slate-600">
-            Check requirements against Atlantic Coastal Civil &amp; Marine Ltd.'s profile.
+            Audit requirements against company profile.
           </p>
         </div>
 
@@ -363,7 +363,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
           onClick={onNext}
           className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
         >
-          <span>Open compliance matrix</span>
+          <span>Check compliance</span>
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
