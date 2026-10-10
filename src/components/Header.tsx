@@ -17,11 +17,11 @@ export const Header: React.FC<HeaderProps> = ({
   hasSelectedTender
 }) => {
   const steps = [
-    { number: 1, label: 'Profile', sub: 'Company details' },
-    { number: 2, label: 'Opportunities', sub: '10 tenders found' },
-    { number: 3, label: 'Tender analysis', sub: 'Should we bid?' },
-    { number: 4, label: 'Compliance', sub: 'Requirements check' },
-    { number: 5, label: 'Proposal draft', sub: 'Review and export' }
+    { number: 1, label: 'Profile', sub: 'Details' },
+    { number: 2, label: 'Feed', sub: '10 tenders' },
+    { number: 3, label: 'Analysis', sub: 'Bid or skip' },
+    { number: 4, label: 'Compliance', sub: 'Audit' },
+    { number: 5, label: 'Proposal', sub: 'Draft' }
   ];
 
   return (
@@ -40,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </div>
             <p className="text-xs text-slate-500 hidden sm:block">
-              Government tender finder and proposal writer for Nova Scotia businesses
+              Tender finder and proposal writer for Nova Scotia
             </p>
           </div>
         </div>
@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="px-3 py-1.5 text-xs font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-lg transition flex items-center gap-1.5 border border-slate-200 cursor-pointer"
             title="View verified Nova Scotia procurement portals"
           >
-            <span>Verified sources</span>
+            <span>Sources</span>
             <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
           </button>
 
@@ -61,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({
             title="Reset demo to start"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">Reset demo</span>
+            <span className="hidden md:inline">Reset</span>
           </button>
         </div>
       </div>

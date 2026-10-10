@@ -13,14 +13,14 @@ export const DisclaimerBanner: React.FC<DisclaimerBannerProps> = ({ onOpenSource
         <div className="flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
           <span>
-            <strong>Demo only:</strong> All businesses, tenders, and draft proposals are fictional sample data. Not affiliated with the Government of Nova Scotia.
+            <strong>Demo only:</strong> Fictional sample data. Not an official government service.
           </span>
         </div>
         <button
           onClick={onOpenSources}
           className="text-amber-800 hover:text-amber-950 font-semibold underline underline-offset-2 flex items-center gap-1 cursor-pointer transition-colors"
         >
-          View real Nova Scotia portal links <ExternalLink className="w-3 h-3" />
+          View portals <ExternalLink className="w-3 h-3" />
         </button>
       </aside>
     );
@@ -34,11 +34,11 @@ export const DisclaimerBanner: React.FC<DisclaimerBannerProps> = ({ onOpenSource
             <span className="w-2 h-2 rounded-full bg-sky-400"></span>
             Nemo
             <span className="text-xs font-normal text-slate-300 px-2 py-0.5 bg-slate-800 rounded border border-slate-700">
-              Demo sample
+              Demo
             </span>
           </div>
           <p className="text-sm text-slate-400 max-w-xl">
-            A prototype to help Nova Scotia businesses find provincial, municipal, federal, and healthcare public tenders.
+            Sample tool for Nova Scotia public tenders.
           </p>
         </div>
 
@@ -47,12 +47,12 @@ export const DisclaimerBanner: React.FC<DisclaimerBannerProps> = ({ onOpenSource
             onClick={onOpenSources}
             className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 transition flex items-center gap-1.5 cursor-pointer"
           >
-            <span>Real Nova Scotia sources</span>
+            <span>Verified sources</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </button>
           <span className="text-slate-600 hidden sm:inline">&bull;</span>
           <span className="text-slate-400">
-            Fictional sample data &bull; NS Public Procurement Act references
+            Fictional data &bull; NS Public Procurement Act references
           </span>
         </div>
       </div>

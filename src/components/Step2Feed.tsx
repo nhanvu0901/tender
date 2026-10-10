@@ -77,10 +77,10 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
       <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
-            Matched opportunities
+            Opportunities
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Pick a tender to look at. Ranked by fit with Atlantic Coastal Civil &amp; Marine Ltd.
+            Pick a tender to review.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search by tender title, buyer, ref # (e.g. Seawall, HRM, Pier)..."
+              placeholder="Search tenders..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
               className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-xl text-sm bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition"
@@ -131,7 +131,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                {rec === 'All' ? 'All recommendations' : rec}
+                {rec === 'All' ? 'All' : rec}
               </button>
             ))}
           </div>
@@ -182,7 +182,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
               }}
               className="text-xs text-sky-600 hover:text-sky-800 font-medium underline underline-offset-2 ml-auto cursor-pointer"
             >
-              Clear filters
+              Clear
             </button>
           )}
         </div>
@@ -241,7 +241,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
 
                       {isFlagship && (
                         <span className="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 font-medium text-xs border border-sky-200">
-                          Featured walkthrough
+                          Featured
                         </span>
                       )}
                     </div>
@@ -249,7 +249,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                     {/* Match Score & Recommendation Badge */}
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200">
-                        <span className="text-xs text-slate-500 font-medium">Match score:</span>
+                        <span className="text-xs text-slate-500 font-medium">Score:</span>
                         <span
                           className={`font-bold text-sm ${
                             tender.relevanceScore >= 80
@@ -306,7 +306,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                   <div className="flex flex-wrap items-center gap-4 text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100">
                     <div className="flex items-center gap-1.5">
                       <DollarSign className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span className="text-slate-500 text-xs">Est. value:</span>
+                      <span className="text-slate-500 text-xs">Value:</span>
                       <span className="font-semibold text-slate-900">{tender.estimatedValue}</span>
                     </div>
 
@@ -318,10 +318,10 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
 
                     <div className="flex items-center gap-1.5">
                       <Calendar className="w-4 h-4 text-amber-600 shrink-0" />
-                      <span className="text-slate-500 text-xs">Closing:</span>
+                      <span className="text-slate-500 text-xs">Closes:</span>
                       <span className="font-medium text-slate-900">{tender.closingDate}</span>
                       <span className="text-xs font-medium px-2 py-0.5 rounded bg-amber-100 text-amber-900 ml-1">
-                        {tender.daysRemaining} days left
+                        {tender.daysRemaining} days
                       </span>
                     </div>
                   </div>
@@ -336,7 +336,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                           onClick={e => toggleExpand(tender.id, e)}
                           className="text-xs text-sky-600 hover:text-sky-800 font-medium cursor-pointer"
                         >
-                          {isExpanded ? 'Show fewer' : `+${tender.matchReasons.length - 2} more`}
+                          {isExpanded ? 'Less' : `+${tender.matchReasons.length - 2} more`}
                         </button>
                       )}
                     </div>
@@ -344,7 +344,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                       {visibleReasons.map((reason, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <span className="text-sky-600 font-bold shrink-0 mt-0.5">&bull;</span>
-                          <span className="leading-snug">{reason}</span>
+                          <span className="leading-snug line-clamp-2">{reason}</span>
                         </li>
                       ))}
                     </ul>

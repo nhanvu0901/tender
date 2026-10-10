@@ -68,66 +68,66 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
       {/* Top Banner / Introduction */}
       <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-7 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-800 text-sky-400 border border-slate-700 text-xs font-medium">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800 text-sky-400 border border-slate-700 text-xs font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-              Pre-filled demo business &bull; Dartmouth, Nova Scotia
+              Dartmouth, NS &bull; Demo
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
               {profile.name}
             </h1>
-            <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
-              Review or edit your business details used to match tenders across Nova Scotia Tenders, Halifax bids&amp;tenders, and CanadaBuys.
+            <p className="text-sm text-slate-300 max-w-2xl">
+              Review and edit your business profile.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0">
             <button
               onClick={() => (isEditing ? handleSave() : setIsEditing(true))}
-              className="px-4 py-2.5 rounded-xl text-sm font-medium border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white transition flex items-center justify-center gap-2 cursor-pointer"
+              className="px-4 py-2.5 rounded-xl text-sm font-medium border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white transition flex items-center justify-center gap-1.5 cursor-pointer"
             >
               {isEditing ? (
                 <>
                   <Save className="w-4 h-4 text-emerald-400" />
-                  <span>Save changes</span>
+                  <span>Save</span>
                 </>
               ) : (
                 <>
                   <Edit3 className="w-4 h-4 text-sky-400" />
-                  <span>Edit profile</span>
+                  <span>Edit</span>
                 </>
               )}
             </button>
 
             <button
               onClick={onNext}
-              className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+              className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
             >
-              <span>View matched opportunities</span>
+              <span>View tenders</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
         {/* Quick Stats Strip */}
-        <div className="mt-6 pt-5 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+        <div className="mt-5 pt-4 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
           <div>
-            <span className="text-slate-400 block text-xs mb-0.5">Nova Scotia registry</span>
-            <span className="font-medium text-slate-200">RJSC Good standing (#NS-8849201)</span>
+            <span className="text-slate-400 block text-xs mb-0.5">Registry</span>
+            <span className="font-medium text-slate-200">Good standing</span>
           </div>
           <div>
-            <span className="text-slate-400 block text-xs mb-0.5">Headquarters</span>
+            <span className="text-slate-400 block text-xs mb-0.5">Base</span>
             <span className="font-medium text-slate-200">Burnside, Dartmouth</span>
           </div>
           <div>
-            <span className="text-slate-400 block text-xs mb-0.5">Safety rating</span>
+            <span className="text-slate-400 block text-xs mb-0.5">Safety</span>
             <span className="font-medium text-emerald-400 flex items-center gap-1">
-              <CheckCircle2 className="w-4 h-4" /> NSCSA COR&trade; certified
+              <CheckCircle2 className="w-4 h-4" /> COR&trade; certified
             </span>
           </div>
           <div>
-            <span className="text-slate-400 block text-xs mb-0.5">Staff</span>
-            <span className="font-medium text-slate-200">{editedProfile.teamSize} employees</span>
+            <span className="text-slate-400 block text-xs mb-0.5">Team</span>
+            <span className="font-medium text-slate-200">{editedProfile.teamSize} staff</span>
           </div>
         </div>
       </div>
@@ -143,9 +143,9 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
               <span>Business details</span>
             </div>
 
-            <div className="space-y-3.5 text-sm">
+            <div className="space-y-3 text-sm">
               <div>
-                <label className="text-slate-500 block text-xs mb-1">Legal operating name</label>
+                <label className="text-slate-500 block text-xs mb-1">Legal name</label>
                 {isEditing ? (
                   <input
                     type="text"
@@ -159,7 +159,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
               </div>
 
               <div>
-                <label className="text-slate-500 block text-xs mb-1">Operating base</label>
+                <label className="text-slate-500 block text-xs mb-1">Base</label>
                 {isEditing ? (
                   <input
                     type="text"
@@ -178,7 +178,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                   <p className="font-semibold text-slate-900">{editedProfile.yearEstablished}</p>
                 </div>
                 <div>
-                  <label className="text-slate-500 block text-xs mb-1">Team size</label>
+                  <label className="text-slate-500 block text-xs mb-1">Team</label>
                   {isEditing ? (
                     <input
                       type="number"
@@ -187,7 +187,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                       className="w-full px-2.5 py-1 border border-slate-300 rounded-lg text-sm"
                     />
                   ) : (
-                    <p className="font-semibold text-slate-900">{editedProfile.teamSize} employees</p>
+                    <p className="font-semibold text-slate-900">{editedProfile.teamSize} staff</p>
                   )}
                 </div>
               </div>
@@ -202,7 +202,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                 <span>Certifications</span>
               </div>
               <span className="text-xs bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-200 font-medium">
-                All current
+                Current
               </span>
             </div>
 
@@ -226,9 +226,9 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs text-sm">
             <div className="flex items-center gap-2 text-slate-900 font-semibold text-base mb-3">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Bonding &amp; insurance</span>
+              <span>Insurance</span>
             </div>
-            <div className="space-y-2.5 text-slate-600">
+            <div className="space-y-2 text-slate-600">
               <div className="flex justify-between py-1 border-b border-slate-100">
                 <span>General liability:</span>
                 <span className="font-medium text-slate-900">{editedProfile.insuranceCoverage.commercialGeneralLiability}</span>
@@ -238,7 +238,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                 <span className="font-medium text-slate-900">{editedProfile.insuranceCoverage.errorsAndOmissions}</span>
               </div>
               <div className="flex justify-between py-1">
-                <span>Marine spill coverage:</span>
+                <span>Marine spill:</span>
                 <span className="font-medium text-slate-900">{editedProfile.insuranceCoverage.environmentalImpairment}</span>
               </div>
             </div>
@@ -252,9 +252,9 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2 text-slate-900 font-semibold text-base">
                 <MapPin className="w-4 h-4 text-sky-600" />
-                <span>Service regions (Nova Scotia)</span>
+                <span>Service regions</span>
               </div>
-              <span className="text-xs text-slate-500">Toggle regions you service</span>
+              <span className="text-xs text-slate-500">Click to toggle.</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -278,7 +278,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                   </div>
                   {reg.primaryBase && (
                     <span className="mt-2 text-xs font-medium text-sky-800 bg-sky-100 px-2 py-0.5 rounded w-max">
-                      Primary base (Dartmouth)
+                      Base (Dartmouth)
                     </span>
                   )}
                 </button>
@@ -293,7 +293,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                 <Briefcase className="w-4 h-4 text-indigo-600" />
                 <span>Core capabilities</span>
               </div>
-              <span className="text-xs text-slate-500">Used to match tenders</span>
+              <span className="text-xs text-slate-500">Used for matching.</span>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -312,7 +312,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
               <div className="flex gap-2 pt-2">
                 <input
                   type="text"
-                  placeholder="Add capability (e.g. Scour Monitoring)..."
+                  placeholder="Add capability..."
                   value={newCapability}
                   onChange={e => setNewCapability(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && handleAddCapability()}
@@ -332,7 +332,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
               <div>
                 <div className="flex items-center gap-1.5 mb-2">
                   <span className="text-xs font-semibold text-slate-600">
-                    NAICS classifications
+                    NAICS codes
                   </span>
                   <span
                     className="inline-flex items-center cursor-help text-slate-400 hover:text-slate-600"
@@ -356,7 +356,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
               <div>
                 <div className="flex items-center gap-1.5 mb-2">
                   <span className="text-xs font-semibold text-slate-600">
-                    UNSPSC commodity codes
+                    UNSPSC codes
                   </span>
                   <span
                     className="inline-flex items-center cursor-help text-slate-400 hover:text-slate-600"
@@ -384,10 +384,10 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2 text-slate-900 font-semibold text-base">
                 <History className="w-4 h-4 text-emerald-600" />
-                <span>Past public contracts (Nova Scotia)</span>
+                <span>Past contracts</span>
               </div>
               <span className="text-xs text-emerald-800 font-medium bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                4 reference contracts
+                4 references
               </span>
             </div>
 
@@ -407,14 +407,14 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                   <div className="flex items-center gap-2 text-slate-500 text-xs">
                     <span className="font-medium text-slate-700">{contract.client}</span>
                     <span>&bull;</span>
-                    <span>Completed {contract.completionDate}</span>
+                    <span>{contract.completionDate}</span>
                     <span>&bull;</span>
                     <span className="px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 font-medium">
-                      {contract.relevanceRating} Fit
+                      {contract.relevanceRating}
                     </span>
                   </div>
 
-                  <p className="text-slate-600 text-sm pt-1 leading-relaxed">{contract.scopeSummary}</p>
+                  <p className="text-slate-600 text-sm pt-1 leading-relaxed line-clamp-2">{contract.scopeSummary}</p>
                 </div>
               ))}
             </div>
@@ -423,16 +423,16 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
           {/* Bottom Next Step Callout */}
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="space-y-1">
-              <h3 className="font-semibold text-slate-900 text-sm">Ready to scan Nova Scotia tenders?</h3>
+              <h3 className="font-semibold text-slate-900 text-sm">Next step</h3>
               <p className="text-sm text-slate-600">
-                We will match this profile against active tenders from HRM, Department of Public Works, Build Nova Scotia, and CanadaBuys.
+                Scan 10 active public tenders.
               </p>
             </div>
             <button
               onClick={onNext}
               className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
             >
-              <span>View matched opportunities (10)</span>
+              <span>View tenders</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
