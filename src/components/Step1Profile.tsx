@@ -66,71 +66,68 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Top Banner / Introduction */}
-      <div className="bg-gradient-to-r from-sky-900 via-slate-900 to-indigo-950 text-white rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-sky-400/20 via-transparent to-transparent pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-7 shadow-xs">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 border border-sky-400/30 text-xs font-semibold">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-800 text-sky-400 border border-slate-700 text-xs font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-              Pre-Qualified Nova Scotia SME Procurement Profile
+              Pre-filled demo business &bull; Dartmouth, Nova Scotia
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
               {profile.name}
             </h1>
             <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
-              Dartmouth-based marine & civil engineering contractor. BidNova uses this profile to continuously scan 
-              <strong> Nova Scotia Tenders</strong>, <strong>Halifax bids&tenders</strong>, and <strong>CanadaBuys</strong>, automatically scoring opportunities against your verified capabilities, regional reach, and past public past performance.
+              Review or edit your business details used to match tenders across Nova Scotia Tenders, Halifax bids&amp;tenders, and CanadaBuys.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
             <button
               onClick={() => (isEditing ? handleSave() : setIsEditing(true))}
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-white transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+              className="px-4 py-2.5 rounded-xl text-sm font-medium border border-slate-700 bg-slate-800 hover:bg-slate-700 text-white transition flex items-center justify-center gap-2 cursor-pointer"
             >
               {isEditing ? (
                 <>
                   <Save className="w-4 h-4 text-emerald-400" />
-                  <span>Save Changes</span>
+                  <span>Save changes</span>
                 </>
               ) : (
                 <>
                   <Edit3 className="w-4 h-4 text-sky-400" />
-                  <span>Edit Profile</span>
+                  <span>Edit profile</span>
                 </>
               )}
             </button>
 
             <button
               onClick={onNext}
-              className="px-5 py-2.5 rounded-xl text-xs font-bold bg-sky-500 hover:bg-sky-400 text-slate-950 transition flex items-center justify-center gap-2 shadow-sm shadow-sky-500/30 cursor-pointer"
+              className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-sky-500 hover:bg-sky-400 text-slate-950 transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
             >
-              <span>Explore Matched Opportunities</span>
+              <span>View matched opportunities</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
         {/* Quick Stats Strip */}
-        <div className="mt-6 pt-6 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+        <div className="mt-6 pt-5 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
           <div>
-            <span className="text-slate-400 block text-[11px]">Nova Scotia Registry</span>
-            <span className="font-semibold text-slate-200">RJS Good Standing (#NS-8849201)</span>
+            <span className="text-slate-400 block text-xs mb-0.5">Nova Scotia registry</span>
+            <span className="font-medium text-slate-200">RJSC Good standing (#NS-8849201)</span>
           </div>
           <div>
-            <span className="text-slate-400 block text-[11px]">Primary Headquarters</span>
-            <span className="font-semibold text-slate-200">Burnside, Dartmouth, NS</span>
+            <span className="text-slate-400 block text-xs mb-0.5">Headquarters</span>
+            <span className="font-medium text-slate-200">Burnside, Dartmouth</span>
           </div>
           <div>
-            <span className="text-slate-400 block text-[11px]">Safety Audit Status</span>
-            <span className="font-semibold text-emerald-400 flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" /> NSCSA COR™ Certified
+            <span className="text-slate-400 block text-xs mb-0.5">Safety rating</span>
+            <span className="font-medium text-emerald-400 flex items-center gap-1">
+              <CheckCircle2 className="w-4 h-4" /> NSCSA COR&trade; certified
             </span>
           </div>
           <div>
-            <span className="text-slate-400 block text-[11px]">Full-Time Staff</span>
-            <span className="font-semibold text-slate-200">{editedProfile.teamSize} Engineers & Techs</span>
+            <span className="text-slate-400 block text-xs mb-0.5">Staff</span>
+            <span className="font-medium text-slate-200">{editedProfile.teamSize} employees</span>
           </div>
         </div>
       </div>
@@ -141,56 +138,56 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
         <div className="space-y-6 lg:col-span-1">
           {/* Company Details Card */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm mb-4">
+            <div className="flex items-center gap-2 text-slate-900 font-semibold text-base mb-4">
               <Building2 className="w-4 h-4 text-sky-600" />
-              <span>Business Overview</span>
+              <span>Business details</span>
             </div>
 
-            <div className="space-y-3 text-xs">
+            <div className="space-y-3.5 text-sm">
               <div>
-                <label className="text-slate-500 block text-[11px] mb-0.5">Legal Operating Name</label>
+                <label className="text-slate-500 block text-xs mb-1">Legal operating name</label>
                 {isEditing ? (
                   <input
                     type="text"
                     value={editedProfile.legalEntity}
                     onChange={e => setEditedProfile({ ...editedProfile, legalEntity: e.target.value })}
-                    className="w-full px-2.5 py-1.5 border border-slate-300 rounded-lg text-xs"
+                    className="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-sm"
                   />
                 ) : (
-                  <p className="font-medium text-slate-800">{editedProfile.legalEntity}</p>
+                  <p className="font-medium text-slate-900">{editedProfile.legalEntity}</p>
                 )}
               </div>
 
               <div>
-                <label className="text-slate-500 block text-[11px] mb-0.5">Headquarters & Operating Base</label>
+                <label className="text-slate-500 block text-xs mb-1">Operating base</label>
                 {isEditing ? (
                   <input
                     type="text"
                     value={editedProfile.headquarters}
                     onChange={e => setEditedProfile({ ...editedProfile, headquarters: e.target.value })}
-                    className="w-full px-2.5 py-1.5 border border-slate-300 rounded-lg text-xs"
+                    className="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-sm"
                   />
                 ) : (
-                  <p className="font-medium text-slate-800">{editedProfile.headquarters}</p>
+                  <p className="font-medium text-slate-900">{editedProfile.headquarters}</p>
                 )}
               </div>
 
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-3 pt-1">
                 <div>
-                  <label className="text-slate-500 block text-[11px] mb-0.5">Year Established</label>
-                  <p className="font-semibold text-slate-800">{editedProfile.yearEstablished}</p>
+                  <label className="text-slate-500 block text-xs mb-1">Established</label>
+                  <p className="font-semibold text-slate-900">{editedProfile.yearEstablished}</p>
                 </div>
                 <div>
-                  <label className="text-slate-500 block text-[11px] mb-0.5">Team Size</label>
+                  <label className="text-slate-500 block text-xs mb-1">Team size</label>
                   {isEditing ? (
                     <input
                       type="number"
                       value={editedProfile.teamSize}
                       onChange={e => setEditedProfile({ ...editedProfile, teamSize: parseInt(e.target.value) || 0 })}
-                      className="w-full px-2 py-1 border border-slate-300 rounded text-xs"
+                      className="w-full px-2.5 py-1 border border-slate-300 rounded-lg text-sm"
                     />
                   ) : (
-                    <p className="font-semibold text-slate-800">{editedProfile.teamSize} Employees</p>
+                    <p className="font-semibold text-slate-900">{editedProfile.teamSize} employees</p>
                   )}
                 </div>
               </div>
@@ -200,49 +197,49 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
           {/* Certifications Card */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+              <div className="flex items-center gap-2 text-slate-900 font-semibold text-base">
                 <Award className="w-4 h-4 text-amber-600" />
-                <span>Verified Certifications</span>
+                <span>Certifications</span>
               </div>
-              <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200 font-medium">
-                All Current
+              <span className="text-xs bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-200 font-medium">
+                All current
               </span>
             </div>
 
             <div className="space-y-3">
               {editedProfile.certifications.map((cert, idx) => (
-                <div key={idx} className="p-3 rounded-xl border border-slate-100 bg-slate-50/70 text-xs">
+                <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-100 text-sm">
                   <div className="flex items-center justify-between gap-1 mb-1">
-                    <span className="font-bold text-slate-900">{cert.name}</span>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                    <span className="font-semibold text-slate-900">{cert.name}</span>
+                    <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                       {cert.status}
                     </span>
                   </div>
-                  <p className="text-slate-600 text-[11px]">{cert.issuer}</p>
-                  <p className="text-[10px] text-slate-400 mt-1">{cert.expiryOrRenewal}</p>
+                  <p className="text-slate-600 text-xs">{cert.issuer}</p>
+                  <p className="text-xs text-slate-400 mt-1">{cert.expiryOrRenewal}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Insurance & Liability */}
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs text-xs">
-            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm mb-3">
+          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs text-sm">
+            <div className="flex items-center gap-2 text-slate-900 font-semibold text-base mb-3">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Public Tender Bonding & Insurance</span>
+              <span>Bonding &amp; insurance</span>
             </div>
-            <div className="space-y-2 text-slate-600">
+            <div className="space-y-2.5 text-slate-600">
               <div className="flex justify-between py-1 border-b border-slate-100">
-                <span>Commercial General Liability:</span>
-                <span className="font-semibold text-slate-800">{editedProfile.insuranceCoverage.commercialGeneralLiability}</span>
+                <span>General liability:</span>
+                <span className="font-medium text-slate-900">{editedProfile.insuranceCoverage.commercialGeneralLiability}</span>
               </div>
               <div className="flex justify-between py-1 border-b border-slate-100">
-                <span>Professional E&O:</span>
-                <span className="font-semibold text-slate-800">{editedProfile.insuranceCoverage.errorsAndOmissions}</span>
+                <span>Professional E&amp;O:</span>
+                <span className="font-medium text-slate-900">{editedProfile.insuranceCoverage.errorsAndOmissions}</span>
               </div>
               <div className="flex justify-between py-1">
-                <span>Marine Environmental Spill:</span>
-                <span className="font-semibold text-slate-800">{editedProfile.insuranceCoverage.environmentalImpairment}</span>
+                <span>Marine spill coverage:</span>
+                <span className="font-medium text-slate-900">{editedProfile.insuranceCoverage.environmentalImpairment}</span>
               </div>
             </div>
           </div>
@@ -253,11 +250,11 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
           {/* Service Regions in Nova Scotia */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+              <div className="flex items-center gap-2 text-slate-900 font-semibold text-base">
                 <MapPin className="w-4 h-4 text-sky-600" />
-                <span>Nova Scotia Service Regions</span>
+                <span>Service regions (Nova Scotia)</span>
               </div>
-              <span className="text-xs text-slate-400">Click to toggle regional bidding radius</span>
+              <span className="text-xs text-slate-500">Toggle regions you service</span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -265,7 +262,7 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                 <button
                   key={reg.id}
                   onClick={() => handleToggleRegion(reg.id)}
-                  className={`p-3 rounded-xl border text-left text-xs transition cursor-pointer flex flex-col justify-between ${
+                  className={`p-3 rounded-xl border text-left text-sm transition cursor-pointer flex flex-col justify-between ${
                     reg.active
                       ? 'border-sky-300 bg-sky-50/70 text-sky-950 font-medium'
                       : 'border-slate-200 bg-slate-50 text-slate-400'
@@ -274,14 +271,14 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                   <div className="flex items-center justify-between">
                     <span className="font-semibold">{reg.name}</span>
                     <span
-                      className={`w-2 h-2 rounded-full ${
+                      className={`w-2.5 h-2.5 rounded-full ${
                         reg.active ? 'bg-sky-500' : 'bg-slate-300'
                       }`}
                     />
                   </div>
                   {reg.primaryBase && (
-                    <span className="mt-2 text-[10px] font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded w-max">
-                      Primary Base (Dartmouth)
+                    <span className="mt-2 text-xs font-medium text-sky-800 bg-sky-100 px-2 py-0.5 rounded w-max">
+                      Primary base (Dartmouth)
                     </span>
                   )}
                 </button>
@@ -292,18 +289,18 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
           {/* Capabilities & Codes */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+              <div className="flex items-center gap-2 text-slate-900 font-semibold text-base">
                 <Briefcase className="w-4 h-4 text-indigo-600" />
-                <span>Core Technical Capabilities</span>
+                <span>Core capabilities</span>
               </div>
-              <span className="text-xs text-slate-400">Used for AI tender matching</span>
+              <span className="text-xs text-slate-500">Used to match tenders</span>
             </div>
 
             <div className="flex flex-wrap gap-2">
               {editedProfile.coreCapabilities.map((cap, i) => (
                 <span
                   key={i}
-                  className="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-800 text-xs font-medium flex items-center gap-1.5"
+                  className="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800 text-sm font-medium flex items-center gap-2"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
                   {cap}
@@ -319,27 +316,35 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
                   value={newCapability}
                   onChange={e => setNewCapability(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && handleAddCapability()}
-                  className="flex-1 px-3 py-1.5 text-xs border border-slate-300 rounded-lg"
+                  className="flex-1 px-3 py-1.5 text-sm border border-slate-300 rounded-lg"
                 />
                 <button
                   onClick={handleAddCapability}
-                  className="px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-semibold hover:bg-indigo-700 transition flex items-center gap-1 cursor-pointer"
+                  className="px-3.5 py-1.5 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 transition flex items-center gap-1 cursor-pointer"
                 >
-                  <Plus className="w-3.5 h-3.5" /> Add
+                  <Plus className="w-4 h-4" /> Add
                 </button>
               </div>
             )}
 
-            {/* NAICS & UNSPSC Procurement Codes */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+            {/* NAICS & UNSPSC Procurement Codes with tooltips */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-3 border-t border-slate-100">
               <div>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
-                  NAICS Classifications
-                </span>
-                <div className="space-y-1">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <span className="text-xs font-semibold text-slate-600">
+                    NAICS classifications
+                  </span>
+                  <span
+                    className="inline-flex items-center cursor-help text-slate-400 hover:text-slate-600"
+                    title="Standard industry classification (Statistics Canada)"
+                  >
+                    <Info className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+                <div className="space-y-1.5">
                   {editedProfile.naicsCodes.map((c, idx) => (
-                    <div key={idx} className="text-xs text-slate-700 flex items-start gap-1.5">
-                      <span className="font-mono font-semibold text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded text-[11px]">
+                    <div key={idx} className="text-sm text-slate-700 flex items-start gap-2">
+                      <span className="font-mono text-xs font-semibold text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded">
                         {c.code}
                       </span>
                       <span className="truncate">{c.label}</span>
@@ -349,13 +354,21 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
               </div>
 
               <div>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
-                  UNSPSC Commodity Codes
-                </span>
-                <div className="space-y-1">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <span className="text-xs font-semibold text-slate-600">
+                    UNSPSC commodity codes
+                  </span>
+                  <span
+                    className="inline-flex items-center cursor-help text-slate-400 hover:text-slate-600"
+                    title="UN public procurement commodity code"
+                  >
+                    <Info className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+                <div className="space-y-1.5">
                   {editedProfile.unspscCodes.map((c, idx) => (
-                    <div key={idx} className="text-xs text-slate-700 flex items-start gap-1.5">
-                      <span className="font-mono font-semibold text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded text-[11px]">
+                    <div key={idx} className="text-sm text-slate-700 flex items-start gap-2">
+                      <span className="font-mono text-xs font-semibold text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded">
                         {c.code}
                       </span>
                       <span className="truncate">{c.label}</span>
@@ -369,12 +382,12 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
           {/* Past Public Contracts in Nova Scotia */}
           <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+              <div className="flex items-center gap-2 text-slate-900 font-semibold text-base">
                 <History className="w-4 h-4 text-emerald-600" />
-                <span>Past Public Sector Contracts in Nova Scotia (Evidence Library)</span>
+                <span>Past public contracts (Nova Scotia)</span>
               </div>
-              <span className="text-xs text-emerald-700 font-medium bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                4 Verified References
+              <span className="text-xs text-emerald-800 font-medium bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                4 reference contracts
               </span>
             </div>
 
@@ -382,44 +395,44 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
               {editedProfile.pastContracts.map(contract => (
                 <div
                   key={contract.id}
-                  className="p-4 rounded-xl border border-slate-200 hover:border-slate-300 bg-slate-50/50 hover:bg-white transition text-xs space-y-1.5"
+                  className="p-4 rounded-xl border border-slate-100 bg-slate-50 hover:bg-slate-100/60 transition space-y-1.5"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <span className="font-bold text-slate-900 text-sm">{contract.projectName}</span>
-                    <span className="font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-xs self-start sm:self-auto">
+                    <span className="font-semibold text-slate-900 text-sm">{contract.projectName}</span>
+                    <span className="font-mono font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded text-xs self-start sm:self-auto">
                       {contract.contractValue}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-3 text-slate-500 text-[11px]">
-                    <span className="font-semibold text-slate-700">{contract.client}</span>
+                  <div className="flex items-center gap-2 text-slate-500 text-xs">
+                    <span className="font-medium text-slate-700">{contract.client}</span>
                     <span>&bull;</span>
                     <span>Completed {contract.completionDate}</span>
                     <span>&bull;</span>
-                    <span className="px-1.5 py-0.2 rounded bg-sky-100 text-sky-800 font-medium">
+                    <span className="px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 font-medium">
                       {contract.relevanceRating} Fit
                     </span>
                   </div>
 
-                  <p className="text-slate-600 text-xs pt-1">{contract.scopeSummary}</p>
+                  <p className="text-slate-600 text-sm pt-1 leading-relaxed">{contract.scopeSummary}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Bottom Next Step Callout */}
-          <div className="bg-sky-50 border border-sky-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="space-y-1">
-              <h3 className="font-bold text-sky-950 text-sm">Ready to scan Nova Scotia tenders?</h3>
-              <p className="text-xs text-sky-800">
+              <h3 className="font-semibold text-slate-900 text-sm">Ready to scan Nova Scotia tenders?</h3>
+              <p className="text-sm text-slate-600">
                 We will match this profile against active tenders from HRM, Department of Public Works, Build Nova Scotia, and CanadaBuys.
               </p>
             </div>
             <button
               onClick={onNext}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs shadow-md shadow-sky-600/20 transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
             >
-              <span>View Matched Opportunities (10)</span>
+              <span>View matched opportunities (10)</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
