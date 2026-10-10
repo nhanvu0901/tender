@@ -11,9 +11,7 @@ import {
   AlertCircle,
   XCircle,
   ArrowRight,
-  Sparkles,
-  Building,
-  Info
+  Building
 } from 'lucide-react';
 
 interface Step2FeedProps {

@@ -8,8 +8,7 @@ import {
   XCircle,
   FileCheck2,
   Filter,
-  ShieldCheck,
-  Sparkles
+  ShieldCheck
 } from 'lucide-react';
 
 export interface Step4ComplianceProps {

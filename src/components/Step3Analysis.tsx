@@ -7,7 +7,6 @@ import {
   Calendar,
   DollarSign,
   MapPin,
-  Sparkles,
   CheckCircle2,
   AlertTriangle,
   Scale,
