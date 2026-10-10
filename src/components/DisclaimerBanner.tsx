@@ -32,7 +32,7 @@ export const DisclaimerBanner: React.FC<DisclaimerBannerProps> = ({ onOpenSource
         <div>
           <div className="flex items-center gap-2 text-white font-bold text-base mb-1">
             <span className="w-2 h-2 rounded-full bg-sky-400"></span>
-            BidNova
+            Nemo
             <span className="text-xs font-normal text-slate-300 px-2 py-0.5 bg-slate-800 rounded border border-slate-700">
               Demo sample
             </span>

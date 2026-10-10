@@ -1,6 +1,6 @@
-# BidNova — Nova Scotia Public Procurement AI Navigator (Demo Prototype)
+# Nemo — Nova Scotia Public Tenders (Demo Prototype)
 
-**BidNova** is a clickable, high-fidelity demo prototype inspired by "Awardly", specifically tailored for Nova Scotia small-and-medium enterprises (SMEs) bidding on public sector contracts.
+**Nemo** is a clickable, high-fidelity demo prototype inspired by "Awardly", specifically tailored for Nova Scotia small-and-medium enterprises (SMEs) bidding on public sector contracts.
 
 It showcases a complete, 5-stage end-to-end user journey for a local Nova Scotia business navigating provincial, municipal, federal, and MASH-sector procurement opportunities.
 

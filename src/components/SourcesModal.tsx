@@ -117,7 +117,7 @@ export const SourcesModal: React.FC<SourcesModalProps> = ({ isOpen, onClose }) =
 
           {/* Legal Notice */}
           <div className="p-3 bg-slate-100 rounded-lg text-xs text-slate-600">
-            <strong>Note on sample data:</strong> The opportunities displayed inside BidNova reflect realistic tender scopes, 
+            <strong>Note on sample data:</strong> The opportunities displayed inside Nemo reflect realistic tender scopes, 
             NAICS/UNSPSC categories, and evaluation weights modeled after real Nova Scotia specifications, but all tender numbers, 
             contract sums, and specific contact names are generated dummy data for demonstration purposes only.
           </div>
