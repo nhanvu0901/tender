@@ -50,14 +50,14 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
           className="text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to tender analysis</span>
+          <span>Back</span>
         </button>
 
         <button
           onClick={onNext}
           className="px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
         >
-          <span>Go to proposal draft</span>
+          <span>Write draft</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -70,13 +70,13 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
               {tender.tenderNumber}
             </span>
             <span className="text-xs text-slate-400">&bull;</span>
-            <span className="text-xs font-medium text-slate-500">Can we meet every requirement?</span>
+            <span className="text-xs font-medium text-slate-500">Audit</span>
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
-            Requirement compliance
+            Compliance
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Check if we can meet every mandatory and rated requirement.
+            Audit requirements against company profile.
           </p>
         </div>
 
@@ -103,7 +103,7 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
       <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-3 rounded-2xl border border-slate-200 shadow-xs text-xs">
         <div className="flex items-center gap-1.5 text-slate-500">
           <Filter className="w-3.5 h-3.5" />
-          <span className="font-medium text-slate-700">Filter:</span>
+          <span className="font-medium text-slate-700">Filter</span>
         </div>
 
         <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
@@ -164,9 +164,9 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
                 {/* Column 2: Company Evidence */}
                 <div className="lg:col-span-5 bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1">
                   <span className="text-xs font-medium text-slate-500 block">
-                    Company evidence
+                    Evidence
                   </span>
-                  <p className="text-slate-700 leading-relaxed text-sm">{item.companyEvidence}</p>
+                  <p className="text-slate-700 leading-relaxed text-sm line-clamp-2">{item.companyEvidence}</p>
                 </div>
 
                 {/* Column 3: Status Badge */}
@@ -190,9 +190,9 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
                 {/* Column 4: Action Needed */}
                 <div className="lg:col-span-2 space-y-1">
                   <span className="text-xs font-medium text-slate-500 block">
-                    Action needed
+                    Action
                   </span>
-                  <p className="text-slate-700 text-xs leading-relaxed">
+                  <p className="text-slate-700 text-xs leading-relaxed line-clamp-2">
                     {item.actionNeeded}
                   </p>
                 </div>
@@ -208,10 +208,10 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
           <div className="space-y-1">
             <div className="flex items-center gap-2 text-emerald-950 font-semibold text-base">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Compliance clearance: approved to draft</span>
+              <span>Ready to draft</span>
             </div>
             <p className="text-sm text-emerald-800">
-              All mandatory threshold criteria are met or ready for certified attachment. You can now generate the proposal draft.
+              All mandatory requirements met. Ready to write proposal.
             </p>
           </div>
 
@@ -219,7 +219,7 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
             onClick={onNext}
             className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-sm transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
-            <span>Proceed to proposal draft</span>
+            <span>Write draft</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -228,10 +228,10 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
           <div className="space-y-1">
             <div className="flex items-center gap-2 text-amber-950 font-semibold text-base">
               <AlertTriangle className="w-4 h-4 text-amber-600" />
-              <span>Gaps to resolve before submission ({stats.gap})</span>
+              <span>Gaps found ({stats.gap})</span>
             </div>
             <p className="text-sm text-amber-800">
-              {stats.gap} requirement{stats.gap > 1 ? 's are' : ' is'} flagged as a gap. You can still proceed to generate the draft with partner commitments.
+              Resolve gaps before final tender submission.
             </p>
           </div>
 
@@ -239,7 +239,7 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
             onClick={onNext}
             className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
-            <span>Proceed to proposal draft</span>
+            <span>Write draft</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
