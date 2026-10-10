@@ -149,7 +149,7 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
           className="text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to compliance</span>
+          <span>Back</span>
         </button>
 
         <div className="flex items-center gap-2">
@@ -158,7 +158,7 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
             className="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium flex items-center gap-1.5 transition cursor-pointer"
           >
             {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-500" />}
-            <span>{isCopied ? 'Copied' : 'Copy draft'}</span>
+            <span>{isCopied ? 'Copied' : 'Copy'}</span>
           </button>
 
           <button
@@ -166,7 +166,7 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
             className="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-sky-400" />
-            <span>Export text file</span>
+            <span>Download</span>
           </button>
         </div>
       </div>
@@ -181,31 +181,31 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
             <span className="text-xs text-slate-400">&bull;</span>
             {tender.recommendation === 'Skip' ? (
               <span className="text-xs font-medium text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-                Skip criteria
+                Skip
               </span>
             ) : gapCount > 0 ? (
               <span className="text-xs font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                Draft generated ({gapCount} gap{gapCount > 1 ? 's' : ''} to resolve)
+                {gapCount} gap{gapCount > 1 ? 's' : ''} to resolve
               </span>
             ) : (
               <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                Compliant draft ready
+                Draft ready
               </span>
             )}
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
-            Proposal draft: {tender.title}
+            Proposal draft
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Review and export your proposal draft.
+            Review and export your proposal.
           </p>
 
           <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500">
             <span className="font-medium text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200 text-xs">
-              Sample output
+              Sample
             </span>
             <span>
-              Draft text generated from company profile data and sample RFP clauses for demo review.
+              Simulated draft output for demo review.
             </span>
           </div>
         </div>
@@ -242,21 +242,21 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
             disabled={isRefining}
             className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-800 font-medium border border-slate-200 transition cursor-pointer disabled:opacity-50"
           >
-            + Emphasize COR&trade; safety record
+            + COR&trade; safety
           </button>
           <button
             onClick={() => handleSimulateRefine('Highlight 45-minute Dartmouth emergency mobilization')}
             disabled={isRefining}
             className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-800 font-medium border border-slate-200 transition cursor-pointer disabled:opacity-50"
           >
-            + Highlight 45-min Dartmouth mobilization
+            + 45-min mobilization
           </button>
           <button
             onClick={() => handleSimulateRefine('Strengthen HalifACT 2050 climate alignment')}
             disabled={isRefining}
             className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-800 font-medium border border-slate-200 transition cursor-pointer disabled:opacity-50"
           >
-            + Align with HalifACT 2050 climate targets
+            + HalifACT climate
           </button>
         </div>
 
@@ -277,13 +277,13 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
               : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
           }`}
         >
-          All sections
+          All
         </button>
         {[
           { id: 'exec' as const, label: '1. Summary' },
           { id: 'scope' as const, label: '2. Scope' },
-          { id: 'method' as const, label: '3. Methodology' },
-          { id: 'past' as const, label: '4. Experience' },
+          { id: 'method' as const, label: '3. Methods' },
+          { id: 'past' as const, label: '4. Past work' },
           { id: 'team' as const, label: '5. Team' },
           { id: 'impact' as const, label: '6. Social value' }
         ].map(tab => (
@@ -304,12 +304,12 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
       {/* Proposal Content Cards */}
       <div className="space-y-4">
         {[
-          { key: 'executiveSummary' as const, tabId: 'exec', num: 1, title: '1. Executive summary & value proposition' },
-          { key: 'understandingOfScope' as const, tabId: 'scope', num: 2, title: '2. Understanding of requirements & scope' },
-          { key: 'technicalMethodology' as const, tabId: 'method', num: 3, title: '3. Technical approach & methodology' },
-          { key: 'relevantExperience' as const, tabId: 'past', num: 4, title: '4. Relevant past experience & references' },
-          { key: 'teamResumes' as const, tabId: 'team', num: 5, title: '5. Key personnel & team' },
-          { key: 'localEconomicImpact' as const, tabId: 'impact', num: 6, title: '6. Social value & local economic impact' }
+          { key: 'executiveSummary' as const, tabId: 'exec', num: 1, title: '1. Executive summary' },
+          { key: 'understandingOfScope' as const, tabId: 'scope', num: 2, title: '2. Scope understanding' },
+          { key: 'technicalMethodology' as const, tabId: 'method', num: 3, title: '3. Technical approach' },
+          { key: 'relevantExperience' as const, tabId: 'past', num: 4, title: '4. Past experience' },
+          { key: 'teamResumes' as const, tabId: 'team', num: 5, title: '5. Project team' },
+          { key: 'localEconomicImpact' as const, tabId: 'impact', num: 6, title: '6. Social value' }
         ]
           .filter(sec => activeSection === 'all' || activeSection === sec.tabId)
           .map(sec => {
@@ -330,7 +330,7 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
                     onClick={() => toggleSectionExpand(sec.key)}
                     className="text-xs text-sky-600 hover:text-sky-800 font-medium cursor-pointer"
                   >
-                    {isExpanded ? 'Collapse' : 'Show full section & edit'}
+                    {isExpanded ? 'Collapse' : 'Edit'}
                   </button>
                 </div>
 
@@ -343,7 +343,7 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
                   />
                 ) : (
                   <div className="space-y-2">
-                    <p className="text-sm text-slate-700 leading-relaxed">
+                    <p className="text-sm text-slate-700 leading-relaxed line-clamp-2">
                       {firstParagraph}
                     </p>
                     {paragraphs.length > 1 && (
@@ -352,7 +352,7 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
                         onClick={() => toggleSectionExpand(sec.key)}
                         className="text-xs text-slate-500 hover:text-sky-600 font-medium cursor-pointer block"
                       >
-                        + {paragraphs.length - 1} more paragraph{paragraphs.length > 2 ? 's' : ''} (click to expand)
+                        +{paragraphs.length - 1} more
                       </button>
                     )}
                   </div>
@@ -367,13 +367,13 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-sky-400 text-xs font-medium">
             <BookmarkCheck className="w-4 h-4" />
-            <span>Ready for submission</span>
+            <span>Submission</span>
           </div>
           <h3 className="text-lg font-bold">
-            Submit bid on {tender.source}
+            Submit bid
           </h3>
           <p className="text-sm text-slate-400 max-w-xl">
-            In Nova Scotia, public electronic bidding is completed via the official e-procurement portal. Copy your response text, attach certified documents, and submit directly on:
+            Submit official bid via provincial portal.
           </p>
         </div>
 
@@ -391,7 +391,7 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
             onClick={onRestartJourney}
             className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs border border-slate-700 transition cursor-pointer"
           >
-            Try another tender
+            Try another
           </button>
         </div>
       </div>
@@ -402,10 +402,10 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
           <CheckCircle2 className="w-5 h-5" />
         </div>
         <h3 className="font-bold text-slate-900 text-base">
-          Demo journey completed
+          Demo complete
         </h3>
         <p className="text-sm text-slate-600 max-w-lg mx-auto">
-          You navigated all 5 stages: Company profile &rarr; Matched opportunities &rarr; RFP analysis &rarr; Compliance matrix &rarr; Proposal draft.
+          Completed all 5 demo steps.
         </p>
       </div>
     </div>
