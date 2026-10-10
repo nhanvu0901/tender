@@ -1,0 +1,17 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Production build
+dist
+build
+
+# Local environment & caches
+.DS_Store
+*.local
+.vscode
+.idea
+
+# Vite cache
+.vite
