@@ -167,7 +167,7 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
 
       {/* RFP Key Timeline */}
       <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
-        <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+        <h3 className="text-xs font-semibold text-slate-500 mb-3 flex items-center gap-1.5">
           <Calendar className="w-4 h-4 text-sky-600" />
           Timeline
         </h3>

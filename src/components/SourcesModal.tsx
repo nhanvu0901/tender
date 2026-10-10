@@ -68,7 +68,7 @@ export const SourcesModal: React.FC<SourcesModalProps> = ({ isOpen, onClose }) =
 
           {/* Sources List */}
           <div className="space-y-4">
-            <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <h3 className="text-xs font-semibold text-slate-500">
               Verified public procurement hubs (live URLs)
             </h3>
 
