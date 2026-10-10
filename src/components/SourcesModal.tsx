@@ -38,8 +38,8 @@ export const SourcesModal: React.FC<SourcesModalProps> = ({ isOpen, onClose }) =
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-slate-900">Verified Nova Scotia procurement sources</h2>
-              <p className="text-xs text-slate-500">Official portals and regulatory reference framework</p>
+              <h2 className="text-lg font-bold text-slate-900">Verified sources</h2>
+              <p className="text-xs text-slate-500">Official Nova Scotia procurement portals.</p>
             </div>
           </div>
           <button
@@ -56,12 +56,10 @@ export const SourcesModal: React.FC<SourcesModalProps> = ({ isOpen, onClose }) =
           <div className="bg-sky-50 border border-sky-200 rounded-xl p-4 flex gap-3 text-sky-950">
             <Info className="w-5 h-5 text-sky-600 shrink-0 mt-0.5" />
             <div className="space-y-1 text-sm leading-relaxed">
-              <p className="font-semibold text-sky-900">Regulatory context: Nova Scotia Public Procurement Act</p>
+              <p className="font-semibold text-sky-900">Regulatory context</p>
               <p className="text-slate-700">
-                In Nova Scotia, public sector procurement is governed by the <em>Public Procurement Act</em> (SNS 2011, c. 12) 
-                administered by the Province's Procurement Services. It establishes standardized competitive bidding rules across 
-                provincial government departments, Crown corporations, and the <strong>MASH sector</strong> (Municipalities, Academic 
-                institutions, School boards, and Health authorities).
+                In Nova Scotia, public procurement follows the <em>Public Procurement Act</em> (SNS 2011, c. 12) 
+                across provincial departments and the MASH sector (municipalities, universities, schools, health authorities).
               </p>
             </div>
           </div>
@@ -69,7 +67,7 @@ export const SourcesModal: React.FC<SourcesModalProps> = ({ isOpen, onClose }) =
           {/* Sources List */}
           <div className="space-y-4">
             <h3 className="text-xs font-semibold text-slate-500">
-              Verified public procurement hubs (live URLs)
+              Official portals
             </h3>
 
             <div className="grid gap-3">
@@ -95,12 +93,12 @@ export const SourcesModal: React.FC<SourcesModalProps> = ({ isOpen, onClose }) =
                       rel="noopener noreferrer"
                       className="text-xs font-medium text-sky-600 hover:text-sky-800 flex items-center gap-1 shrink-0 bg-sky-50 px-2.5 py-1 rounded-md border border-sky-100 group-hover:bg-sky-100 transition"
                     >
-                      <span>Visit portal</span>
+                      <span>Open portal</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
 
-                  <p className="text-sm text-slate-600">{source.description}</p>
+                  <p className="text-sm text-slate-600 line-clamp-2">{source.description}</p>
 
                   <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
                     <div>
@@ -117,9 +115,7 @@ export const SourcesModal: React.FC<SourcesModalProps> = ({ isOpen, onClose }) =
 
           {/* Legal Notice */}
           <div className="p-3 bg-slate-100 rounded-lg text-xs text-slate-600">
-            <strong>Note on sample data:</strong> The opportunities displayed inside Nemo reflect realistic tender scopes, 
-            NAICS/UNSPSC categories, and evaluation weights modeled after real Nova Scotia specifications, but all tender numbers, 
-            contract sums, and specific contact names are generated dummy data for demonstration purposes only.
+            <strong>Sample data:</strong> Tenders inside Nemo reflect Nova Scotia scopes and criteria. Numbers, values, and contacts are simulated dummy data.
           </div>
         </div>
 
