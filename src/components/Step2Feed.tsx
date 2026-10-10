@@ -66,38 +66,42 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
     return { total: tenders.length, pursue: pursueCount, consider: considerCount, skip: skipCount };
   }, [tenders]);
 
+  const [expandedReasons, setExpandedReasons] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (tenderId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setExpandedReasons(prev => ({ ...prev, [tenderId]: !prev[tenderId] }));
+  };
+
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Feed Header */}
       <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
-              Matched Nova Scotia Public Tenders
-            </h1>
-          </div>
-          <p className="text-xs text-slate-500">
-            Ranked by AI match algorithm using Atlantic Coastal Civil & Marine Ltd. profile & verified past contracts.
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
+            Matched opportunities
+          </h1>
+          <p className="text-sm text-slate-500 mt-1">
+            Pick a tender to look at. Ranked by fit with Atlantic Coastal Civil &amp; Marine Ltd.
           </p>
         </div>
 
         {/* Pipeline Summary Badges */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 font-semibold border border-slate-200">
-            {stats.total} Total Tenders
+          <span className="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 font-medium border border-slate-200">
+            {stats.total} total
           </span>
-          <span className="px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 font-semibold border border-emerald-200 flex items-center gap-1">
+          <span className="px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-800 font-medium border border-emerald-200 flex items-center gap-1">
             <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-            {stats.pursue} Pursue
+            {stats.pursue} pursue
           </span>
-          <span className="px-3 py-1.5 rounded-lg bg-amber-100 text-amber-800 font-semibold border border-amber-200 flex items-center gap-1">
+          <span className="px-3 py-1.5 rounded-lg bg-amber-100 text-amber-800 font-medium border border-amber-200 flex items-center gap-1">
             <AlertCircle className="w-3.5 h-3.5 text-amber-600" />
-            {stats.consider} Consider
+            {stats.consider} consider
           </span>
-          <span className="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-semibold border border-slate-200 flex items-center gap-1">
+          <span className="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 font-medium border border-slate-200 flex items-center gap-1">
             <XCircle className="w-3.5 h-3.5 text-slate-400" />
-            {stats.skip} Skip
+            {stats.skip} skip
           </span>
         </div>
       </div>
@@ -113,7 +117,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
               placeholder="Search by tender title, buyer, ref # (e.g. Seawall, HRM, Pier)..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-xl text-xs bg-slate-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition"
+              className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-xl text-sm bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 transition"
             />
           </div>
 
@@ -123,23 +127,23 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
               <button
                 key={rec}
                 onClick={() => setSelectedRecommendation(rec)}
-                className={`px-3 py-1 rounded-lg font-medium transition cursor-pointer whitespace-nowrap ${
+                className={`px-3 py-1.5 rounded-lg font-medium transition cursor-pointer whitespace-nowrap ${
                   selectedRecommendation === rec
                     ? 'bg-white text-slate-900 shadow-xs font-semibold'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                {rec === 'All' ? 'All Recommendations' : rec}
+                {rec === 'All' ? 'All recommendations' : rec}
               </button>
             ))}
           </div>
         </div>
 
         {/* Secondary Dropdown Filters */}
-        <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-100 text-xs">
-          <div className="flex items-center gap-1.5 text-slate-500">
+        <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-slate-100 text-sm">
+          <div className="flex items-center gap-1.5 text-slate-500 text-xs">
             <Filter className="w-3.5 h-3.5" />
-            <span className="font-semibold text-slate-700">Filters:</span>
+            <span className="font-medium text-slate-700">Filters:</span>
           </div>
 
           {/* Region Select */}
@@ -148,7 +152,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
             onChange={e => setSelectedRegion(e.target.value)}
             className="px-2.5 py-1.5 border border-slate-200 rounded-lg text-xs bg-white text-slate-700 focus:outline-none focus:border-sky-500 cursor-pointer"
           >
-            <option value="All">All NS Regions</option>
+            <option value="All">All regions</option>
             {regions.filter(r => r !== 'All').map(r => (
               <option key={r} value={r}>
                 {r}
@@ -162,7 +166,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
             onChange={e => setSelectedSource(e.target.value)}
             className="px-2.5 py-1.5 border border-slate-200 rounded-lg text-xs bg-white text-slate-700 focus:outline-none focus:border-sky-500 cursor-pointer"
           >
-            <option value="All">All Procurement Sources</option>
+            <option value="All">All sources</option>
             {sources.filter(s => s !== 'All').map(s => (
               <option key={s} value={s}>
                 {s}
@@ -178,9 +182,9 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                 setSelectedSource('All');
                 setSelectedRecommendation('All');
               }}
-              className="text-xs text-sky-600 hover:text-sky-800 font-semibold underline underline-offset-2 ml-auto cursor-pointer"
+              className="text-xs text-sky-600 hover:text-sky-800 font-medium underline underline-offset-2 ml-auto cursor-pointer"
             >
-              Clear Filters
+              Clear filters
             </button>
           )}
         </div>
@@ -207,6 +211,8 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
           filteredTenders.map(tender => {
             const isFlagship = tender.id === 'tender-1';
             const isSelected = selectedTenderId === tender.id;
+            const isExpanded = !!expandedReasons[tender.id];
+            const visibleReasons = isExpanded ? tender.matchReasons : tender.matchReasons.slice(0, 2);
 
             return (
               <div
@@ -215,7 +221,7 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                   isSelected
                     ? 'border-sky-500 ring-2 ring-sky-500/20'
                     : isFlagship
-                    ? 'border-sky-300 bg-gradient-to-r from-sky-50/30 via-white to-white'
+                    ? 'border-sky-300'
                     : 'border-slate-200 hover:border-slate-300'
                 }`}
                 onClick={() => onSelectTender(tender)}
@@ -225,20 +231,19 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                   <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
                     <div className="flex flex-wrap items-center gap-2">
                       {/* Source Badge */}
-                      <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-semibold border border-slate-200 flex items-center gap-1 text-[11px]">
-                        <Building className="w-3 h-3 text-slate-500" />
+                      <span className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-medium border border-slate-200 flex items-center gap-1">
+                        <Building className="w-3.5 h-3.5 text-slate-500" />
                         {tender.source}
                       </span>
 
                       {/* Buyer Category */}
-                      <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-50 text-slate-500 border border-slate-100">
+                      <span className="px-2 py-0.5 rounded text-xs font-medium bg-slate-50 text-slate-600 border border-slate-200">
                         {tender.buyerCategory}
                       </span>
 
                       {isFlagship && (
-                        <span className="px-2.5 py-1 rounded-md bg-sky-100 text-sky-800 font-bold text-[11px] border border-sky-200 flex items-center gap-1">
-                          <Sparkles className="w-3 h-3 text-sky-600" />
-                          Featured Full Walkthrough
+                        <span className="px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-800 font-medium text-xs border border-sky-200">
+                          Featured walkthrough
                         </span>
                       )}
                     </div>
@@ -246,9 +251,9 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                     {/* Match Score & Recommendation Badge */}
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200">
-                        <span className="text-[11px] text-slate-400 font-medium">Relevance:</span>
+                        <span className="text-xs text-slate-500 font-medium">Match score:</span>
                         <span
-                          className={`font-black text-xs ${
+                          className={`font-bold text-sm ${
                             tender.relevanceScore >= 80
                               ? 'text-emerald-700'
                               : tender.relevanceScore >= 60
@@ -256,12 +261,12 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                               : 'text-slate-500'
                           }`}
                         >
-                          {tender.relevanceScore}/100
+                          {tender.relevanceScore}
                         </span>
                       </div>
 
                       <span
-                        className={`px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wide flex items-center gap-1 ${
+                        className={`px-3 py-1 rounded-lg text-xs font-semibold capitalize flex items-center gap-1 ${
                           tender.recommendation === 'Pursue'
                             ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                             : tender.recommendation === 'Consider'
@@ -287,53 +292,61 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={e => e.stopPropagation()}
-                        className="text-sky-600 hover:text-sky-800 flex items-center gap-1 hover:underline text-[11px]"
+                        className="text-sky-600 hover:text-sky-800 flex items-center gap-1 hover:underline text-xs"
                       >
                         {tender.portalReferenceName}
-                        <ExternalLink className="w-2.5 h-2.5" />
+                        <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-sky-700 transition">
+                    <h3 className="text-base sm:text-lg font-semibold text-slate-900 group-hover:text-sky-700 transition">
                       {tender.title}
                     </h3>
-                    <p className="text-xs text-slate-600 mt-1">{tender.buyer}</p>
+                    <p className="text-sm text-slate-600 mt-1">{tender.buyer}</p>
                   </div>
 
-                  {/* Key Metadata Pills */}
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 bg-slate-50/70 p-3 rounded-xl border border-slate-100">
+                  {/* Key Metadata Row */}
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-100">
                     <div className="flex items-center gap-1.5">
-                      <DollarSign className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span className="text-slate-400">Est. Value:</span>
-                      <span className="font-semibold text-slate-800">{tender.estimatedValue}</span>
+                      <DollarSign className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span className="text-slate-500 text-xs">Est. value:</span>
+                      <span className="font-semibold text-slate-900">{tender.estimatedValue}</span>
                     </div>
 
                     <div className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-sky-600 shrink-0" />
-                      <span className="text-slate-400">Region:</span>
-                      <span className="font-semibold text-slate-800">{tender.region}</span>
+                      <MapPin className="w-4 h-4 text-sky-600 shrink-0" />
+                      <span className="text-slate-500 text-xs">Region:</span>
+                      <span className="font-medium text-slate-900">{tender.region}</span>
                     </div>
 
                     <div className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                      <span className="text-slate-400">Closing:</span>
-                      <span className="font-semibold text-slate-800">{tender.closingDate}</span>
-                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900 ml-1">
+                      <Calendar className="w-4 h-4 text-amber-600 shrink-0" />
+                      <span className="text-slate-500 text-xs">Closing:</span>
+                      <span className="font-medium text-slate-900">{tender.closingDate}</span>
+                      <span className="text-xs font-medium px-2 py-0.5 rounded bg-amber-100 text-amber-900 ml-1">
                         {tender.daysRemaining} days left
                       </span>
                     </div>
                   </div>
 
-                  {/* AI Match Reasons Box */}
-                  <div className="bg-sky-50/50 border border-sky-100 rounded-xl p-3.5 text-xs">
-                    <div className="font-bold text-sky-950 flex items-center gap-1.5 mb-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-sky-600" />
-                      <span>AI Match Analysis & Rationales</span>
+                  {/* Match Reasons (top 2 by default, expandable) */}
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-sm space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-slate-800 text-xs">Match reasons</span>
+                      {tender.matchReasons.length > 2 && (
+                        <button
+                          type="button"
+                          onClick={e => toggleExpand(tender.id, e)}
+                          className="text-xs text-sky-600 hover:text-sky-800 font-medium cursor-pointer"
+                        >
+                          {isExpanded ? 'Show fewer' : `+${tender.matchReasons.length - 2} more`}
+                        </button>
+                      )}
                     </div>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-1.5 text-slate-700">
-                      {tender.matchReasons.map((reason, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5 text-[11px]">
+                    <ul className="space-y-1.5 text-slate-700 text-sm">
+                      {visibleReasons.map((reason, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
                           <span className="text-sky-600 font-bold shrink-0 mt-0.5">&bull;</span>
-                          <span>{reason}</span>
+                          <span className="leading-snug">{reason}</span>
                         </li>
                       ))}
                     </ul>
@@ -341,20 +354,20 @@ export const Step2Feed: React.FC<Step2FeedProps> = ({
 
                   {/* Action Bar */}
                   <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-slate-100">
-                    <div className="text-[11px] text-slate-500">
+                    <div className="text-xs text-slate-500">
                       Method: <span className="font-medium text-slate-700">{tender.procurementMethod}</span>
                     </div>
 
                     <button
                       onClick={() => onSelectTender(tender)}
-                      className={`px-4 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer ${
+                      className={`px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2 cursor-pointer ${
                         tender.recommendation === 'Pursue'
-                          ? 'bg-sky-600 hover:bg-sky-500 text-white shadow-xs'
+                          ? 'bg-sky-600 hover:bg-sky-500 text-white'
                           : 'bg-slate-900 hover:bg-slate-800 text-white'
                       }`}
                     >
-                      <span>Analyze Tender & RFP Requirements</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <span>Review tender</span>
+                      <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
