@@ -87,6 +87,12 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
 [X] PSPC DOS Reliability Clearance Verification
 ========================================================================`;
 
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+
+  const toggleSectionExpand = (key: string) => {
+    setExpandedSections(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
   const handleCopy = () => {
     navigator.clipboard.writeText(fullTextDraft);
     setIsCopied(true);
@@ -109,27 +115,27 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
 
     setTimeout(() => {
       setIsRefining(false);
-      setRefinementSuccessMessage(`Refinement Applied: "${instruction}"`);
+      setRefinementSuccessMessage(`Applied: "${instruction}"`);
 
       if (instruction.includes('COR')) {
         setDraftData(prev => ({
           ...prev,
-          executiveSummary: prev.executiveSummary + '\n\n[AI Refinement]: ACCM highlights its consecutive 5-year NSCSA zero-lost-time record and formal audit score of 94% on Nova Scotia municipal marine assets.'
+          executiveSummary: prev.executiveSummary + '\n\n[Refinement]: ACCM highlights its consecutive 5-year NSCSA zero-lost-time record and formal audit score of 94% on Nova Scotia municipal marine assets.'
         }));
       } else if (instruction.includes('Dartmouth')) {
         setDraftData(prev => ({
           ...prev,
-          executiveSummary: prev.executiveSummary + '\n\n[AI Refinement]: ACCM guarantees a dedicated marine survey vessel berthed in Halifax Harbour with emergency callout mobilization within 45 minutes.'
+          executiveSummary: prev.executiveSummary + '\n\n[Refinement]: ACCM guarantees a dedicated marine survey vessel berthed in Halifax Harbour with emergency callout mobilization within 45 minutes.'
         }));
       } else if (instruction.includes('HalifACT') || instruction.includes('climate')) {
         setDraftData(prev => ({
           ...prev,
-          understandingOfScope: prev.understandingOfScope + '\n\n[AI Refinement]: Scope analysis calibrated directly against HalifACT 2050 extreme sea-level rise scenarios (+1.2m storm surge datum) ensuring full alignment with municipal net-zero resilience frameworks.'
+          understandingOfScope: prev.understandingOfScope + '\n\n[Refinement]: Scope analysis calibrated directly against HalifACT 2050 extreme sea-level rise scenarios (+1.2m storm surge datum) ensuring full alignment with municipal net-zero resilience frameworks.'
         }));
       }
 
       setTimeout(() => setRefinementSuccessMessage(null), 3500);
-    }, 1000);
+    }, 800);
   };
 
   const gapCount = tender.complianceMatrix.filter(c => c.status === 'Gap').length;
@@ -140,27 +146,27 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
       <div className="flex flex-wrap items-center justify-between gap-3">
         <button
           onClick={onBack}
-          className="text-xs font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-200/60 transition cursor-pointer"
+          className="text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to Compliance Matrix</span>
+          <span>Back to compliance</span>
         </button>
 
         <div className="flex items-center gap-2">
           <button
             onClick={handleCopy}
-            className="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer shadow-xs"
+            className="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium flex items-center gap-1.5 transition cursor-pointer"
           >
             {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-500" />}
-            <span>{isCopied ? 'Copied to Clipboard!' : 'Copy Draft'}</span>
+            <span>{isCopied ? 'Copied' : 'Copy draft'}</span>
           </button>
 
           <button
             onClick={handleDownload}
-            className="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center gap-1.5 transition cursor-pointer shadow-xs"
+            className="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-sky-400" />
-            <span>Export Text / Markdown</span>
+            <span>Export text file</span>
           </button>
         </div>
       </div>
@@ -169,296 +175,205 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
       <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="font-mono text-xs font-bold text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
+            <span className="font-mono text-xs font-medium text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
               {tender.tenderNumber}
             </span>
             <span className="text-xs text-slate-400">&bull;</span>
             {tender.recommendation === 'Skip' ? (
-              <span className="text-xs font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-                Non-Recommended (Skip Criteria)
+              <span className="text-xs font-medium text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                Skip criteria
               </span>
             ) : gapCount > 0 ? (
-              <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
-                Draft Generated ({gapCount} Gap{gapCount > 1 ? 's' : ''} to Remediate)
+              <span className="text-xs font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                Draft generated ({gapCount} gap{gapCount > 1 ? 's' : ''} to resolve)
               </span>
             ) : (
-              <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                Compliant Draft Ready
+              <span className="text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                Compliant draft ready
               </span>
             )}
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
-            AI Proposal Draft: {tender.title}
+            Proposal draft: {tender.title}
           </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Structured for {tender.buyer} &bull; Tailored to {tender.buyerCategory} evaluation criteria and Nova Scotia Public Procurement Act standards.
+          <p className="text-sm text-slate-500 mt-1">
+            Review and export your proposal draft.
           </p>
 
-          <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2 text-[11px] text-slate-500">
-            <span className="font-semibold text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200 text-[10px]">
-              Simulated AI Output
+          <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500">
+            <span className="font-medium text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200 text-xs">
+              Sample output
             </span>
             <span>
-              Draft text synthesized from company profile data and sample RFP clauses. For demonstration review only.
+              Draft text generated from company profile data and sample RFP clauses for demo review.
             </span>
           </div>
         </div>
 
-        {/* Word count & Export Stats */}
-        <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 p-3 rounded-2xl text-xs shrink-0">
+        {/* Word count & Sections */}
+        <div className="flex items-center gap-3 bg-slate-50 border border-slate-200 p-3.5 rounded-2xl text-xs shrink-0">
           <div className="text-center">
-            <span className="text-lg font-black text-slate-800">
+            <span className="text-lg font-bold text-slate-800">
               {fullTextDraft.split(/\s+/).length}
             </span>
-            <span className="block text-[10px] text-slate-400 font-medium">Total Words</span>
+            <span className="block text-xs text-slate-500 font-medium">Words</span>
           </div>
           <div className="w-px h-8 bg-slate-200" />
           <div className="text-center">
-            <span className="text-lg font-black text-emerald-600">6/6</span>
-            <span className="block text-[10px] text-slate-400 font-medium">RFP Sections</span>
+            <span className="text-lg font-bold text-emerald-700">6/6</span>
+            <span className="block text-xs text-slate-500 font-medium">Sections</span>
           </div>
         </div>
       </div>
 
-      {/* AI Refinement Chips Bar */}
-      <div className="bg-sky-50 border border-sky-200 rounded-2xl p-4 space-y-2">
+      {/* Quick AI Refinements Bar */}
+      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-sky-950 font-bold text-xs">
-            <Sparkles className="w-4 h-4 text-sky-600" />
-            <span>Simulate AI Draft Refinements (One-Click Tone Tuning)</span>
+          <div className="flex items-center gap-1.5 text-slate-800 font-semibold text-xs">
+            <Sparkles className="w-3.5 h-3.5 text-sky-600" />
+            <span>Quick adjustments</span>
           </div>
-          {isRefining && <span className="text-[11px] text-sky-700 font-medium animate-pulse">Synthesizing prompt...</span>}
+          {isRefining && <span className="text-xs text-sky-700 font-medium">Applying edit…</span>}
         </div>
 
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <button
             onClick={() => handleSimulateRefine('Emphasize NSCSA COR safety record')}
             disabled={isRefining}
-            className="px-3 py-1.5 rounded-lg bg-white hover:bg-sky-100 text-sky-900 font-medium border border-sky-200 transition cursor-pointer disabled:opacity-50"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-800 font-medium border border-slate-200 transition cursor-pointer disabled:opacity-50"
           >
-            + Emphasize COR™ Safety Record & Audit Score
+            + Emphasize COR&trade; safety record
           </button>
           <button
             onClick={() => handleSimulateRefine('Highlight 45-minute Dartmouth emergency mobilization')}
             disabled={isRefining}
-            className="px-3 py-1.5 rounded-lg bg-white hover:bg-sky-100 text-sky-900 font-medium border border-sky-200 transition cursor-pointer disabled:opacity-50"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-800 font-medium border border-slate-200 transition cursor-pointer disabled:opacity-50"
           >
-            + Highlight 45-Min Local Marine Mobilization
+            + Highlight 45-min Dartmouth mobilization
           </button>
           <button
             onClick={() => handleSimulateRefine('Strengthen HalifACT 2050 climate alignment')}
             disabled={isRefining}
-            className="px-3 py-1.5 rounded-lg bg-white hover:bg-sky-100 text-sky-900 font-medium border border-sky-200 transition cursor-pointer disabled:opacity-50"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-800 font-medium border border-slate-200 transition cursor-pointer disabled:opacity-50"
           >
-            + Align with HalifACT 2050 Climate Projections
+            + Align with HalifACT 2050 climate targets
           </button>
         </div>
 
         {refinementSuccessMessage && (
-          <div className="p-2 rounded-lg bg-emerald-100 text-emerald-900 text-xs font-semibold flex items-center gap-1.5 animate-fade-in">
+          <div className="p-2 rounded-lg bg-emerald-50 text-emerald-800 text-xs font-medium flex items-center gap-1.5">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
             <span>{refinementSuccessMessage}</span>
           </div>
         )}
       </div>
-
       {/* Section View Tabs */}
-      <div className="flex gap-1.5 overflow-x-auto pb-1 text-xs font-semibold scrollbar-none">
+      <div className="flex gap-2 overflow-x-auto pb-1 text-xs font-medium scrollbar-none">
         <button
           onClick={() => setActiveSection('all')}
           className={`px-3 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${
             activeSection === 'all'
-              ? 'bg-slate-900 text-white'
+              ? 'bg-slate-900 text-white font-semibold'
               : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
           }`}
         >
-          View Full Proposal
+          All sections
         </button>
-        <button
-          onClick={() => setActiveSection('exec')}
-          className={`px-3 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${
-            activeSection === 'exec'
-              ? 'bg-slate-900 text-white'
-              : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
-          }`}
-        >
-          1. Executive Summary
-        </button>
-        <button
-          onClick={() => setActiveSection('scope')}
-          className={`px-3 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${
-            activeSection === 'scope'
-              ? 'bg-slate-900 text-white'
-              : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
-          }`}
-        >
-          2. Understanding Scope
-        </button>
-        <button
-          onClick={() => setActiveSection('method')}
-          className={`px-3 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${
-            activeSection === 'method'
-              ? 'bg-slate-900 text-white'
-              : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
-          }`}
-        >
-          3. Technical Methodology
-        </button>
-        <button
-          onClick={() => setActiveSection('past')}
-          className={`px-3 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${
-            activeSection === 'past'
-              ? 'bg-slate-900 text-white'
-              : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
-          }`}
-        >
-          4. Relevant Past Experience
-        </button>
-        <button
-          onClick={() => setActiveSection('team')}
-          className={`px-3 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${
-            activeSection === 'team'
-              ? 'bg-slate-900 text-white'
-              : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
-          }`}
-        >
-          5. Team Resumes
-        </button>
-        <button
-          onClick={() => setActiveSection('impact')}
-          className={`px-3 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${
-            activeSection === 'impact'
-              ? 'bg-slate-900 text-white'
-              : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
-          }`}
-        >
-          6. Social Value Impact
-        </button>
+        {[
+          { id: 'exec' as const, label: '1. Summary' },
+          { id: 'scope' as const, label: '2. Scope' },
+          { id: 'method' as const, label: '3. Methodology' },
+          { id: 'past' as const, label: '4. Experience' },
+          { id: 'team' as const, label: '5. Team' },
+          { id: 'impact' as const, label: '6. Social value' }
+        ].map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveSection(tab.id)}
+            className={`px-3 py-1.5 rounded-xl transition cursor-pointer whitespace-nowrap ${
+              activeSection === tab.id
+                ? 'bg-slate-900 text-white font-semibold'
+                : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
       {/* Proposal Content Cards */}
       <div className="space-y-4">
-        {(activeSection === 'all' || activeSection === 'exec') && (
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-                1. Executive Summary & Proponent Value Proposition
-              </span>
-              <span className="text-[11px] text-slate-400">Section 1</span>
-            </div>
-            <textarea
-              rows={6}
-              value={draftData.executiveSummary}
-              onChange={e => setDraftData({ ...draftData, executiveSummary: e.target.value })}
-              className="w-full text-xs text-slate-700 leading-relaxed font-mono p-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500"
-            />
-          </div>
-        )}
+        {[
+          { key: 'executiveSummary' as const, tabId: 'exec', num: 1, title: '1. Executive summary & value proposition' },
+          { key: 'understandingOfScope' as const, tabId: 'scope', num: 2, title: '2. Understanding of requirements & scope' },
+          { key: 'technicalMethodology' as const, tabId: 'method', num: 3, title: '3. Technical approach & methodology' },
+          { key: 'relevantExperience' as const, tabId: 'past', num: 4, title: '4. Relevant past experience & references' },
+          { key: 'teamResumes' as const, tabId: 'team', num: 5, title: '5. Key personnel & team' },
+          { key: 'localEconomicImpact' as const, tabId: 'impact', num: 6, title: '6. Social value & local economic impact' }
+        ]
+          .filter(sec => activeSection === 'all' || activeSection === sec.tabId)
+          .map(sec => {
+            const content = draftData[sec.key];
+            const isExpanded = !!expandedSections[sec.key] || activeSection !== 'all';
+            const paragraphs = content.split('\n\n').filter(Boolean);
+            const firstParagraph = paragraphs[0] || content;
 
-        {(activeSection === 'all' || activeSection === 'scope') && (
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-                2. Understanding of Requirements & Site Vulnerability
-              </span>
-              <span className="text-[11px] text-slate-400">Section 2</span>
-            </div>
-            <textarea
-              rows={6}
-              value={draftData.understandingOfScope}
-              onChange={e => setDraftData({ ...draftData, understandingOfScope: e.target.value })}
-              className="w-full text-xs text-slate-700 leading-relaxed font-mono p-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500"
-            />
-          </div>
-        )}
+            return (
+              <div key={sec.key} className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-3">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                  <span className="font-semibold text-slate-900 text-sm flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-sky-500"></span>
+                    {sec.title}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => toggleSectionExpand(sec.key)}
+                    className="text-xs text-sky-600 hover:text-sky-800 font-medium cursor-pointer"
+                  >
+                    {isExpanded ? 'Collapse' : 'Show full section & edit'}
+                  </button>
+                </div>
 
-        {(activeSection === 'all' || activeSection === 'method') && (
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-                3. Technical Approach, Methodology & Work Plan
-              </span>
-              <span className="text-[11px] text-slate-400">Section 3</span>
-            </div>
-            <textarea
-              rows={8}
-              value={draftData.technicalMethodology}
-              onChange={e => setDraftData({ ...draftData, technicalMethodology: e.target.value })}
-              className="w-full text-xs text-slate-700 leading-relaxed font-mono p-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500"
-            />
-          </div>
-        )}
-
-        {(activeSection === 'all' || activeSection === 'past') && (
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-                4. Relevant Past Experience & Municipal References
-              </span>
-              <span className="text-[11px] text-slate-400">Section 4</span>
-            </div>
-            <textarea
-              rows={6}
-              value={draftData.relevantExperience}
-              onChange={e => setDraftData({ ...draftData, relevantExperience: e.target.value })}
-              className="w-full text-xs text-slate-700 leading-relaxed font-mono p-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500"
-            />
-          </div>
-        )}
-
-        {(activeSection === 'all' || activeSection === 'team') && (
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-                5. Key Personnel & Local Project Staffing
-              </span>
-              <span className="text-[11px] text-slate-400">Section 5</span>
-            </div>
-            <textarea
-              rows={6}
-              value={draftData.teamResumes}
-              onChange={e => setDraftData({ ...draftData, teamResumes: e.target.value })}
-              className="w-full text-xs text-slate-700 leading-relaxed font-mono p-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500"
-            />
-          </div>
-        )}
-
-        {(activeSection === 'all' || activeSection === 'impact') && (
-          <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-              <span className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-500"></span>
-                6. HRM Social Value & Local Economic Impact
-              </span>
-              <span className="text-[11px] text-slate-400">Section 6</span>
-            </div>
-            <textarea
-              rows={6}
-              value={draftData.localEconomicImpact}
-              onChange={e => setDraftData({ ...draftData, localEconomicImpact: e.target.value })}
-              className="w-full text-xs text-slate-700 leading-relaxed font-mono p-3 bg-slate-50/50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-1 focus:ring-sky-500"
-            />
-          </div>
-        )}
+                {isExpanded ? (
+                  <textarea
+                    rows={Math.min(10, Math.max(5, content.split('\n').length + 1))}
+                    value={content}
+                    onChange={e => setDraftData({ ...draftData, [sec.key]: e.target.value })}
+                    className="w-full text-sm text-slate-800 leading-relaxed font-sans p-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500"
+                  />
+                ) : (
+                  <div className="space-y-2">
+                    <p className="text-sm text-slate-700 leading-relaxed">
+                      {firstParagraph}
+                    </p>
+                    {paragraphs.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => toggleSectionExpand(sec.key)}
+                        className="text-xs text-slate-500 hover:text-sky-600 font-medium cursor-pointer block"
+                      >
+                        + {paragraphs.length - 1} more paragraph{paragraphs.length > 2 ? 's' : ''} (click to expand)
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
       </div>
 
       {/* Submission Instructions & Portal Reference */}
-      <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="space-y-1">
-          <div className="flex items-center gap-2 text-sky-400 text-xs font-semibold">
+          <div className="flex items-center gap-2 text-sky-400 text-xs font-medium">
             <BookmarkCheck className="w-4 h-4" />
-            <span>Ready for Submission</span>
+            <span>Ready for submission</span>
           </div>
           <h3 className="text-lg font-bold">
-            Next: Submit Bid on {tender.source}
+            Submit bid on {tender.source}
           </h3>
-          <p className="text-xs text-slate-400 max-w-xl">
-            In Nova Scotia, public electronic bidding must be completed via the official e-procurement portal. Download or copy your response package, attach your COR™ certificate and APENS seal, then upload to:
+          <p className="text-sm text-slate-400 max-w-xl">
+            In Nova Scotia, public electronic bidding is completed via the official e-procurement portal. Copy your response text, attach certified documents, and submit directly on:
           </p>
         </div>
 
@@ -467,30 +382,30 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
             href={tender.sourcePortalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-sm shadow-sky-500/20"
+            className="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-xs"
           >
             <span>Open {tender.source}</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
           <button
             onClick={onRestartJourney}
-            className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition cursor-pointer"
+            className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs border border-slate-700 transition cursor-pointer"
           >
-            Test Another Opportunity
+            Try another tender
           </button>
         </div>
       </div>
 
-      {/* Completion Banner for End-to-End User Journey */}
-      <div className="bg-gradient-to-r from-emerald-500/10 via-sky-500/10 to-indigo-500/10 border border-emerald-500/20 rounded-2xl p-6 text-center space-y-2">
-        <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-2">
-          <CheckCircle2 className="w-6 h-6" />
+      {/* Completion Banner */}
+      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center space-y-2">
+        <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-1">
+          <CheckCircle2 className="w-5 h-5" />
         </div>
-        <h3 className="font-extrabold text-slate-900 text-base">
-          End-to-End User Journey Completed!
+        <h3 className="font-bold text-slate-900 text-base">
+          Demo journey completed
         </h3>
-        <p className="text-xs text-slate-600 max-w-lg mx-auto">
-          You have navigated all 5 stages of BidNova: Company Profile &rarr; Matched Opportunities Feed &rarr; RFP Analysis &rarr; Compliance Matrix &rarr; AI Proposal Draft.
+        <p className="text-sm text-slate-600 max-w-lg mx-auto">
+          You navigated all 5 stages: Company profile &rarr; Matched opportunities &rarr; RFP analysis &rarr; Compliance matrix &rarr; Proposal draft.
         </p>
       </div>
     </div>
