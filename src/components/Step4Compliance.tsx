@@ -48,17 +48,17 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <button
           onClick={onBack}
-          className="text-xs font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-200/60 transition cursor-pointer"
+          className="text-sm font-medium text-slate-600 hover:text-slate-900 flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to RFP Analysis</span>
+          <span>Back to tender analysis</span>
         </button>
 
         <button
           onClick={onNext}
-          className="px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold flex items-center gap-1.5 transition cursor-pointer shadow-xs"
+          className="px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
         >
-          <span>Generate AI Proposal Draft</span>
+          <span>Go to proposal draft</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -67,34 +67,34 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
       <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="font-mono text-xs font-bold text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
+            <span className="font-mono text-xs font-medium text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
               {tender.tenderNumber}
             </span>
             <span className="text-xs text-slate-400">&bull;</span>
-            <span className="text-xs font-medium text-slate-500">Compliance & Readiness Matrix</span>
+            <span className="text-xs font-medium text-slate-500">Can we meet every requirement?</span>
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
-            Requirement Compliance Audit
+            Requirement compliance
           </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Auto-mapped against Atlantic Coastal Civil & Marine Ltd. certifications, personnel & past contracts.
+          <p className="text-sm text-slate-500 mt-1">
+            Check if we can meet every mandatory and rated requirement.
           </p>
         </div>
 
         {/* Readiness Meter */}
-        <div className="flex items-center gap-4 bg-slate-50 border border-slate-200 p-3 rounded-2xl shrink-0">
+        <div className="flex items-center gap-4 bg-slate-50 border border-slate-200 p-3.5 rounded-2xl shrink-0">
           <div className="text-center">
-            <span className="text-2xl font-black text-sky-600">{stats.readinessScore}%</span>
-            <span className="block text-[10px] text-slate-400 font-medium">Compliance Readiness</span>
+            <span className="text-2xl font-bold text-sky-600">{stats.readinessScore}%</span>
+            <span className="block text-xs text-slate-500 font-medium">Readiness</span>
           </div>
           <div className="w-px h-8 bg-slate-200" />
           <div className="text-xs space-y-0.5">
-            <div className="text-emerald-700 font-semibold">{stats.met} Requirements Met</div>
-            <div className="text-amber-700 font-medium">{stats.partial} Partial (Requires Attachment)</div>
+            <div className="text-emerald-700 font-medium">{stats.met} met</div>
+            <div className="text-amber-700 font-medium">{stats.partial} partial</div>
             {stats.gap > 0 ? (
-              <div className="text-rose-700 font-bold">{stats.gap} Gaps Identified</div>
+              <div className="text-rose-700 font-medium">{stats.gap} gap{stats.gap > 1 ? 's' : ''}</div>
             ) : (
-              <div className="text-slate-400">0 Critical Gaps</div>
+              <div className="text-slate-400">0 gaps</div>
             )}
           </div>
         </div>
@@ -104,7 +104,7 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
       <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-3 rounded-2xl border border-slate-200 shadow-xs text-xs">
         <div className="flex items-center gap-1.5 text-slate-500">
           <Filter className="w-3.5 h-3.5" />
-          <span className="font-semibold text-slate-700">Filter by Status:</span>
+          <span className="font-medium text-slate-700">Filter:</span>
         </div>
 
         <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
@@ -114,7 +114,7 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
               onClick={() => setStatusFilter(tab)}
               className={`px-3 py-1 rounded-lg font-medium transition cursor-pointer ${
                 statusFilter === tab
-                  ? 'bg-white text-slate-900 font-bold shadow-xs'
+                  ? 'bg-white text-slate-900 font-semibold shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
@@ -124,7 +124,7 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
         </div>
       </div>
 
-      {/* Compliance Matrix Table / Cards */}
+      {/* Compliance Matrix Cards */}
       <div className="space-y-3">
         {filteredItems.map(item => {
           const isMet = item.status === 'Met';
@@ -136,18 +136,18 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
               key={item.id}
               className={`bg-white rounded-2xl border p-5 shadow-xs transition ${
                 isMet
-                  ? 'border-slate-200 hover:border-emerald-300'
+                  ? 'border-slate-200'
                   : isPartial
                   ? 'border-amber-200 bg-amber-50/20'
                   : 'border-rose-200 bg-rose-50/20'
               }`}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start text-xs">
-                {/* Column 1: Requirement ID & Type (2 cols) */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start text-sm">
+                {/* Column 1: Requirement ID & Type */}
                 <div className="lg:col-span-3 space-y-1">
                   <div className="flex items-center gap-1.5">
                     <span
-                      className={`font-mono font-bold px-2 py-0.5 rounded text-[11px] ${
+                      className={`font-mono font-medium px-2 py-0.5 rounded text-xs ${
                         item.requirementType === 'Mandatory'
                           ? 'bg-rose-100 text-rose-800'
                           : 'bg-sky-100 text-sky-800'
@@ -155,25 +155,25 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
                     >
                       {item.requirementCode}
                     </span>
-                    <span className="text-[10px] uppercase font-bold text-slate-400">
+                    <span className="text-xs font-medium text-slate-500">
                       {item.requirementType}
                     </span>
                   </div>
-                  <h4 className="font-bold text-slate-900 text-xs pt-1">{item.requirementTitle}</h4>
+                  <h4 className="font-semibold text-slate-900 text-sm pt-1">{item.requirementTitle}</h4>
                 </div>
 
-                {/* Column 2: Company Evidence (5 cols) */}
-                <div className="lg:col-span-5 bg-slate-50/80 p-3 rounded-xl border border-slate-100 space-y-1">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                    Mapped Company Evidence (ACCM Profile)
+                {/* Column 2: Company Evidence */}
+                <div className="lg:col-span-5 bg-slate-50 p-3 rounded-xl border border-slate-100 space-y-1">
+                  <span className="text-xs font-medium text-slate-500 block">
+                    Company evidence
                   </span>
-                  <p className="text-slate-700 leading-relaxed text-xs">{item.companyEvidence}</p>
+                  <p className="text-slate-700 leading-relaxed text-sm">{item.companyEvidence}</p>
                 </div>
 
-                {/* Column 3: Status Badge (2 cols) */}
+                {/* Column 3: Status Badge */}
                 <div className="lg:col-span-2 flex lg:justify-center">
                   <span
-                    className={`px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 text-xs ${
+                    className={`px-3 py-1 rounded-lg font-medium flex items-center gap-1.5 text-xs ${
                       isMet
                         ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
                         : isPartial
@@ -188,12 +188,12 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
                   </span>
                 </div>
 
-                {/* Column 4: Action Needed (2 cols) */}
+                {/* Column 4: Action Needed */}
                 <div className="lg:col-span-2 space-y-1">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                    Action Required
+                  <span className="text-xs font-medium text-slate-500 block">
+                    Action needed
                   </span>
-                  <p className="text-slate-600 text-[11px] font-medium leading-tight">
+                  <p className="text-slate-700 text-xs leading-relaxed">
                     {item.actionNeeded}
                   </p>
                 </div>
@@ -207,40 +207,40 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
       {stats.gap === 0 ? (
         <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-emerald-950 font-bold text-sm">
+            <div className="flex items-center gap-2 text-emerald-950 font-semibold text-base">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Compliance Clearance: Approved to Draft</span>
+              <span>Compliance clearance: approved to draft</span>
             </div>
-            <p className="text-xs text-emerald-800">
-              All mandatory threshold criteria are met or ready for certified attachment. BidNova can now draft a tailored, compliant proposal.
+            <p className="text-sm text-emerald-800">
+              All mandatory threshold criteria are met or ready for certified attachment. You can now generate the proposal draft.
             </p>
           </div>
 
           <button
             onClick={onNext}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs shadow-md shadow-emerald-700/20 transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-sm transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
-            <span>Generate AI Proposal Draft (Step 5)</span>
+            <span>Proceed to proposal draft</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       ) : (
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-amber-950 font-bold text-sm">
+            <div className="flex items-center gap-2 text-amber-950 font-semibold text-base">
               <AlertTriangle className="w-4 h-4 text-amber-600" />
-              <span>Gaps to Resolve Before Submission ({stats.gap} Identified)</span>
+              <span>Gaps to resolve before submission ({stats.gap})</span>
             </div>
-            <p className="text-xs text-amber-800">
-              {stats.gap} requirement{stats.gap > 1 ? 's are' : ' is'} currently flagged as a Gap and must be remediated or subcontracted prior to official tender closing. You may still proceed to generate the draft with placeholder partner commitments.
+            <p className="text-sm text-amber-800">
+              {stats.gap} requirement{stats.gap > 1 ? 's are' : ' is'} flagged as a gap. You can still proceed to generate the draft with partner commitments.
             </p>
           </div>
 
           <button
             onClick={onNext}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-md shadow-amber-600/20 transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
-            <span>Proceed to Proposal Draft (Step 5)</span>
+            <span>Proceed to proposal draft</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
