@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TenderOpportunity, CompanyProfile } from '../types/procurement';
 import {
   ArrowLeft,
@@ -31,7 +31,15 @@ export const Step3Analysis: React.FC<Step3AnalysisProps> = ({
   onNext = () => {}
 }) => {
   const [activeTab, setActiveTab] = useState<'requirements' | 'bidDecision'>('requirements');
-  const [isSimulatingAnalysis, setIsSimulatingAnalysis] = useState(false);
+  const [isSimulatingAnalysis, setIsSimulatingAnalysis] = useState(true);
+
+  useEffect(() => {
+    setIsSimulatingAnalysis(true);
+    const timer = setTimeout(() => {
+      setIsSimulatingAnalysis(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [tender.id]);
 
   const handleSimulateAnalysis = () => {
     setIsSimulatingAnalysis(true);

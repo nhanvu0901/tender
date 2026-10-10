@@ -80,11 +80,13 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   onClick={() => isSelectable && onSelectStep(step.number)}
                   disabled={!isSelectable}
-                  className={`flex items-center gap-2.5 text-left py-1 px-2.5 rounded-xl transition cursor-pointer group ${
+                  className={`flex items-center gap-2.5 text-left py-1 px-2.5 rounded-xl transition group ${
                     isActive
-                      ? 'bg-sky-50 text-sky-900 font-semibold'
+                      ? 'bg-sky-50 text-sky-900 font-semibold cursor-pointer'
                       : isCompleted
-                      ? 'text-slate-700 hover:bg-slate-50'
+                      ? 'text-slate-700 hover:bg-slate-50 cursor-pointer'
+                      : isSelectable
+                      ? 'text-slate-600 hover:bg-slate-50 cursor-pointer'
                       : 'text-slate-400 opacity-60 cursor-not-allowed'
                   }`}
                 >

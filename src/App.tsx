@@ -83,6 +83,7 @@ export function App() {
         {currentStep === 3 && selectedTender && (
           <Step3Analysis
             tender={selectedTender}
+            company={profile}
             onBack={handlePrevStep}
             onNext={handleNextStep}
           />
@@ -91,6 +92,7 @@ export function App() {
         {currentStep === 4 && selectedTender && (
           <Step4Compliance
             tender={selectedTender}
+            company={profile}
             onBack={handlePrevStep}
             onNext={handleNextStep}
           />
@@ -99,6 +101,7 @@ export function App() {
         {currentStep === 5 && selectedTender && (
           <Step5Proposal
             tender={selectedTender}
+            company={profile}
             onBack={handlePrevStep}
             onRestartJourney={() => handleStepJump(2)}
             onOpenSources={() => setIsSourcesModalOpen(true)}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CompanyProfile } from '../types/procurement';
 import {
   Building2,
@@ -32,6 +32,11 @@ export const Step1Profile: React.FC<Step1ProfileProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editedProfile, setEditedProfile] = useState<CompanyProfile>(profile);
   const [newCapability, setNewCapability] = useState('');
+
+  useEffect(() => {
+    setEditedProfile(profile);
+    setIsEditing(false);
+  }, [profile]);
 
   const handleToggleRegion = (regionId: string) => {
     const updatedRegions = editedProfile.serviceRegions.map(reg =>

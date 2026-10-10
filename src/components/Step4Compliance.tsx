@@ -204,25 +204,47 @@ export const Step4Compliance: React.FC<Step4ComplianceProps> = ({
       </div>
 
       {/* Bottom Callout */}
-      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2 text-emerald-950 font-bold text-sm">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>Compliance Clearance: Approved to Draft</span>
+      {stats.gap === 0 ? (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 text-emerald-950 font-bold text-sm">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <span>Compliance Clearance: Approved to Draft</span>
+            </div>
+            <p className="text-xs text-emerald-800">
+              All mandatory threshold criteria are met or ready for certified attachment. BidNova can now draft a tailored, compliant proposal.
+            </p>
           </div>
-          <p className="text-xs text-emerald-800">
-            All mandatory threshold criteria are met or ready for certified attachment. BidNova can now draft a tailored, compliant proposal.
-          </p>
-        </div>
 
-        <button
-          onClick={onNext}
-          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs shadow-md shadow-emerald-700/20 transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
-        >
-          <span>Generate AI Proposal Draft (Step 5)</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
-      </div>
+          <button
+            onClick={onNext}
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs shadow-md shadow-emerald-700/20 transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
+          >
+            <span>Generate AI Proposal Draft (Step 5)</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      ) : (
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 text-amber-950 font-bold text-sm">
+              <AlertTriangle className="w-4 h-4 text-amber-600" />
+              <span>Gaps to Resolve Before Submission ({stats.gap} Identified)</span>
+            </div>
+            <p className="text-xs text-amber-800">
+              {stats.gap} requirement{stats.gap > 1 ? 's are' : ' is'} currently flagged as a Gap and must be remediated or subcontracted prior to official tender closing. You may still proceed to generate the draft with placeholder partner commitments.
+            </p>
+          </div>
+
+          <button
+            onClick={onNext}
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs shadow-md shadow-amber-600/20 transition flex items-center justify-center gap-2 cursor-pointer shrink-0"
+          >
+            <span>Proceed to Proposal Draft (Step 5)</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

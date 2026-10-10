@@ -121,11 +121,18 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
           ...prev,
           executiveSummary: prev.executiveSummary + '\n\n[AI Refinement]: ACCM guarantees a dedicated marine survey vessel berthed in Halifax Harbour with emergency callout mobilization within 45 minutes.'
         }));
+      } else if (instruction.includes('HalifACT') || instruction.includes('climate')) {
+        setDraftData(prev => ({
+          ...prev,
+          understandingOfScope: prev.understandingOfScope + '\n\n[AI Refinement]: Scope analysis calibrated directly against HalifACT 2050 extreme sea-level rise scenarios (+1.2m storm surge datum) ensuring full alignment with municipal net-zero resilience frameworks.'
+        }));
       }
 
       setTimeout(() => setRefinementSuccessMessage(null), 3500);
     }, 1000);
   };
+
+  const gapCount = tender.complianceMatrix.filter(c => c.status === 'Gap').length;
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -166,16 +173,35 @@ COMPLIANCE ATTACHMENTS CHECKLIST:
               {tender.tenderNumber}
             </span>
             <span className="text-xs text-slate-400">&bull;</span>
-            <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-              Compliant Draft Ready
-            </span>
+            {tender.recommendation === 'Skip' ? (
+              <span className="text-xs font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                Non-Recommended (Skip Criteria)
+              </span>
+            ) : gapCount > 0 ? (
+              <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                Draft Generated ({gapCount} Gap{gapCount > 1 ? 's' : ''} to Remediate)
+              </span>
+            ) : (
+              <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                Compliant Draft Ready
+              </span>
+            )}
           </div>
           <h1 className="text-xl sm:text-2xl font-bold text-slate-900">
             AI Proposal Draft: {tender.title}
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Structured for {tender.buyer} &bull; Tailored to HRM evaluation criteria and Nova Scotia Public Procurement Act standards.
+            Structured for {tender.buyer} &bull; Tailored to {tender.buyerCategory} evaluation criteria and Nova Scotia Public Procurement Act standards.
           </p>
+
+          <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2 text-[11px] text-slate-500">
+            <span className="font-semibold text-sky-800 bg-sky-50 px-2 py-0.5 rounded border border-sky-200 text-[10px]">
+              Simulated AI Output
+            </span>
+            <span>
+              Draft text synthesized from company profile data and sample RFP clauses. For demonstration review only.
+            </span>
+          </div>
         </div>
 
         {/* Word count & Export Stats */}
